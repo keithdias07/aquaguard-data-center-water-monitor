@@ -1,0 +1,8 @@
+# Runtime dependencies for the AquaGuard dashboard and analysis scripts.
+# Versions match the environment this project was tested with (Python 3.12).
+streamlit==1.63.0
+pandas==3.0.5
+numpy==2.5.3
+plotly==7.0.0
+scikit-learn==1.9.1
+matplotlib==3.11.2

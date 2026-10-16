@@ -1,0 +1,25 @@
+{
+  "name": "aquaguard-prompt-optimizer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome extension that locally removes unnecessary prompt tokens before you send a prompt.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"tests/unit/*.test.js\"",
+    "eval": "node eval/run_eval.js",
+    "test:e2e": "node --test --test-concurrency=1 \"tests/e2e/*.test.js\"",
+    "icons": "python assets/generate_icons.py",
+    "package": "python ../scripts/package_extension.py",
+    "screenshots": "node tests/e2e/capture_screenshots.js",
+    "sample-stats": "node eval/generate_sample_stats.js"
+  },
+  "devDependencies": {
+    "js-tiktoken": "1.0.21",
+    "prosemirror-model": "1.25.1",
+    "prosemirror-schema-basic": "1.2.4",
+    "prosemirror-state": "1.4.3",
+    "prosemirror-view": "1.40.0",
+    "puppeteer-core": "24.10.0",
+    "quill": "2.0.3"
+  }
+}

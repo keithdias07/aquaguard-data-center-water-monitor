@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="AquaGuard">
+  <defs>
+    <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="124" height="124" rx="28" fill="#0b1a2e" stroke="#1f4a72" stroke-width="4"/>
+  <path d="M64 8.6 C64 8.6 30.7 54 30.7 76.8 A33.3 33.3 0 0 0 97.3 76.8 C97.3 54 64 8.6 64 8.6 Z" fill="url(#drop)"/>
+  <ellipse cx="55" cy="79" rx="9" ry="12.5" fill="#ffffff" fill-opacity="0.27"/>
+</svg>

@@ -1,0 +1,39 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# --- Node / extension tooling ---
+node_modules/
+extension/eval/results/
+
+# --- Build outputs ---
+dist/
+build/
+*.crx
+*.pem
+
+# --- Secrets and local settings (never commit these) ---
+.env
+.env.*
+!.env.example
+*.key
+secrets.*
+.streamlit/secrets.toml
+
+# --- Your personal extension statistics export (load it in the dashboard; keep it local) ---
+data/extension/extension_stats.json
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
