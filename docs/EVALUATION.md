@@ -35,9 +35,22 @@ How the AquaGuard compressor is evaluated, what the numbers mean, and what they 
 
 Previous version, for comparison (45 prompts): 20.6% mean reduction on compressed prompts, 15.8% total.
 
-### Regression prompt
+### User's original test prompt
 
-`eval/regression/ml_learning_prompt.txt` was written from the requirements of the user's original test prompt. The exact original text was not available, so this is a reconstruction in the same verbose style; swap in the original to re-measure.
+`eval/regression/ml_learning_prompt_original.txt` (dataset id `regression-ml-original`).
+
+| | Original | Optimized | Saved | Reduction |
+|---|---|---|---|---|
+| Estimated tokens, extension v0.1 | 239 | 228 | 11 | 4.6% |
+| Estimated tokens, after automatic-mode release (before recap rule) | 239 | 219 | 20 | 8.4% |
+| **Estimated tokens, now** | **239** | **177** | **62** | **25.9%** |
+| Exact `o200k_base` | 226 | 167 | 59 | 26.1% |
+
+This prompt has little social filler, so greeting/thanks rules barely help. The gains come from: removing the closing recap sentence (explicitly marked "As I mentioned earlier", 87.5% of its key words already present; the recap rule requires ≥85% and never drops numbers or negations), collapsing "simple and easy-to-understand" to "simple", turning "I want you to explain to me" / "I would like you to give me" into instructions, and dropping mid-sentence "please". All 13 requirements are checked in `tests/unit/regression-and-rules-v2.test.js`. The evaluation records one human judgement (`allowedLoss`): the words "all" and "requirements" only occur in the recap's meta clause "make sure that all of these requirements are included".
+
+### Reconstructed regression prompt
+
+`eval/regression/ml_learning_prompt.txt` was written from the requirements of the user's original test prompt before the original text was available, in a chattier style.
 
 | | Original | Optimized | Saved | Reduction |
 |---|---|---|---|---|

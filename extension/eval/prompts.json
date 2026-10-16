@@ -507,7 +507,7 @@
         "second-year computer engineering student",
         "step-by-step plan"
       ],
-      "note": "Reconstructed from the requirements in the user's original test prompt (exact text not available)."
+      "note": "Reconstructed earlier from the requirements of regression-ml-original, before the original text was available."
     },
     {
       "id": "boundary-01",
@@ -571,6 +571,32 @@
         "must stay under 2 pages",
         "keep the original section headings"
       ]
+    },
+    {
+      "id": "regression-ml-original",
+      "category": "regression",
+      "expect": "compress",
+      "prompt": "I want you to explain to me in simple and easy-to-understand language what machine learning is and how it works. Please explain the concept as if I am a second-year computer engineering student who understands basic programming but is still a beginner in machine learning. I would like you to give me exactly three practical real-world examples of machine learning, and please make sure that at least one of those examples is related to healthcare and at least one is related to cybersecurity. After explaining the concept and providing the examples, please give me a numbered list of exactly five steps that I should follow to start learning machine learning using Python. Do not use advanced mathematical equations, do not assume that I already understand neural networks, and keep the entire answer under 500 words. End your response with one small Python code example that demonstrates a basic machine learning concept. Please make the explanation beginner-friendly, practical, well-organized, and easy to revise before an exam. As I mentioned earlier, I want a simple explanation, practical examples, a learning roadmap, and a Python example, so please make sure that all of these requirements are included in your answer.",
+      "mustPreserve": [
+        "what machine learning is and how it works",
+        "second-year computer engineering student",
+        "beginner in machine learning",
+        "exactly three practical real-world examples",
+        "related to healthcare",
+        "related to cybersecurity",
+        "numbered list of exactly five steps",
+        "using Python",
+        "not use advanced mathematical equations",
+        "not assume that I already understand neural networks",
+        "under 500 words",
+        "one small Python code example",
+        "beginner-friendly, practical, well-organized, and easy to revise before an exam"
+      ],
+      "allowedLoss": [
+        "constraints:requirements",
+        "constraints:all"
+      ],
+      "note": "The user's own test prompt. 'requirements'/'all' only appear in the recap's meta clause 'make sure that all of these requirements are included in your answer', which restates that the earlier requirements apply."
     }
   ]
 }

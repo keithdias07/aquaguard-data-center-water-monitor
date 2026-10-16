@@ -260,7 +260,17 @@ Full details: [docs/EVALUATION.md](docs/EVALUATION.md). In short, `npm run eval`
 | Median compression latency | ≈0.3 ms |
 | Heuristic tokenizer vs `o200k_base` | 3.8% mean absolute error |
 
-**Regression prompt** (`extension/eval/regression/ml_learning_prompt.txt`): a long, polite request for a beginner ML explanation with exactly three examples (incl. healthcare and cybersecurity), exactly five numbered Python steps, no advanced equations, ≤500 words, a small Python example at the end, and beginner-friendly language for a second-year computer engineering student.
+**Your original test prompt** (`extension/eval/regression/ml_learning_prompt_original.txt`), a dense, mostly polite-free request (simple explanation, three examples incl. healthcare and cybersecurity, five numbered Python steps, no advanced equations, no assumed neural-network knowledge, under 500 words, a small Python example at the end, exam-friendly):
+
+| | Original | Optimized | Saved | Reduction |
+|---|---|---|---|---|
+| Estimated tokens, v0.1 | 239 | 228 | 11 | 4.6% |
+| **Estimated tokens, now** | **239** | **177** | **62** | **25.9%** |
+| Exact `o200k_base` tokens | 226 | 167 | 59 | 26.1% |
+
+All 13 requirements are checked by a unit test and survive. Most of the saving comes from the closing recap ("As I mentioned earlier, I want … so please make sure that all of these requirements are included"). It is removed because you mark it as a repeat and 87.5% of its key words already appear earlier; a recap that adds anything new, or contains a number or negation, is kept.
+
+**Reconstructed regression prompt** (`extension/eval/regression/ml_learning_prompt.txt`), written from the same requirements before the original was available, in a chattier style: a long, polite request for a beginner ML explanation with exactly three examples (incl. healthcare and cybersecurity), exactly five numbered Python steps, no advanced equations, ≤500 words, a small Python example at the end, and beginner-friendly language for a second-year computer engineering student.
 
 | | Original | Optimized | Saved | Reduction |
 |---|---|---|---|---|

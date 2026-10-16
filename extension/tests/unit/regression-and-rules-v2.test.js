@@ -34,6 +34,51 @@ test('regression: ML learning prompt keeps every requirement and shrinks substan
   }
 });
 
+// The user's own original test prompt.
+const ORIGINAL_PROMPT = fs.readFileSync(path.join(__dirname, '..', '..', 'eval', 'regression', 'ml_learning_prompt_original.txt'), 'utf8').trim();
+const ORIGINAL_REQUIREMENTS = [
+  ['simple language', /in simple language/i],
+  ['what machine learning is and how it works', /what machine learning is and how it works/i],
+  ['second-year computer engineering student', /second-year computer engineering student/i],
+  ['understands basic programming, beginner in ML', /understands basic programming but is still a beginner in machine learning/i],
+  ['exactly three practical real-world examples', /exactly three practical real-world examples/i],
+  ['at least one healthcare example', /at least one of those examples is related to healthcare/i],
+  ['at least one cybersecurity example', /at least one is related to cybersecurity/i],
+  ['numbered list of exactly five Python-learning steps', /numbered list of exactly five steps[\s\S]*using Python/i],
+  ['no advanced mathematical equations', /do not use advanced mathematical equations/i],
+  ['do not assume neural-network knowledge', /do not assume that I already understand neural networks/i],
+  ['under 500 words', /under 500 words/i],
+  ['end with one small Python code example', /end your response with one small Python code example/i],
+  ['beginner-friendly, practical, well-organized, easy to revise', /beginner-friendly, practical, well-organized, and easy to revise before an exam/i],
+];
+
+test("regression: the user's original prompt keeps every requirement", () => {
+  for (const level of ['balanced', 'conservative']) {
+    const r = optimize(ORIGINAL_PROMPT, { level });
+    assert.equal(r.changed, true);
+    for (const [name, re] of ORIGINAL_REQUIREMENTS) assert.match(r.optimized, re, `[${level}] lost requirement: ${name}`);
+    assert.doesNotMatch(r.optimized, /As I mentioned earlier/, `[${level}] recap not removed`);
+    assert.ok(r.reductionPct >= 20, `[${level}] expected >= 20% estimated reduction, got ${r.reductionPct.toFixed(1)}%`);
+  }
+});
+
+test('recap removal: only explicit recaps whose content is already covered', () => {
+  const base = 'Explain recursion with two Python examples and a short summary table.';
+  // Covered recap -> removed.
+  assert.equal(optimize(`${base} As I mentioned earlier, I want Python examples and a summary table, so make sure these are included.`).optimized, base);
+  // Recap adding something new (a quiz and diagrams) -> kept.
+  const adds = `${base} As I mentioned earlier, I want Python examples, a summary table, a quiz and diagrams.`;
+  assert.ok(optimize(adds).optimized.includes('a quiz and diagrams'));
+  // Recap with a negation or a number -> kept (the guard never drops these).
+  const neg = `${base} As I mentioned earlier, do not use Python examples longer than a summary table.`;
+  assert.match(optimize(neg).optimized, /do not use Python examples longer than a summary table/i);
+  const num = `${base} As I mentioned earlier, I want 2 Python examples and a summary table.`;
+  assert.ok(optimize(num).optimized.includes('2 Python examples'));
+  // A similar sentence without an explicit recap marker -> kept.
+  const plain = `${base} I want Python examples and a summary table.`;
+  assert.equal(optimize(plain).optimized, plain);
+});
+
 test('lead-ins are kept while the request after them is shortened', () => {
   assert.equal(
     optimize('After that, could you also provide me with a short summary of the main risks?').optimized,
