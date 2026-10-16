@@ -268,8 +268,49 @@
     return tryRewrite(run, rule, text, out);
   }
 
+  // Context-aware recap removal. A sentence the user explicitly marks as a
+  // repeat ("As I mentioned earlier, I want X, Y and Z, so make sure all of
+  // these are included") is dropped ONLY when at least 85% of its key words already
+  // appear elsewhere in the prompt. Numbers and negations can never be
+  // dropped this way (the feature guard blocks it).
+  const RECAP_RULE = {
+    id: 'recap',
+    category: 'repetition',
+    description: 'Removed a recap sentence that repeats requirements stated earlier',
+    vocabulary: '*',
+    allowDrop: ['constraints'],
+  };
+  const RECAP_MARKER_RE =
+    /\b(?:as\s+i\s+(?:mentioned|said|stated|noted|explained)|like\s+i\s+said|to\s+(?:recap|summari[sz]e|reiterate))(?:\s+(?:earlier|before|above|previously))?\b/i;
+  const RECAP_IGNORE = new Set(
+    ('want need would like mentioned said stated noted explained earlier before above previously recap summarize ' +
+      'summarise reiterate please make sure that these those this requirements requirement included include covered ' +
+      'answer response your also with have from into will them they then just things points')
+      .split(' ')
+  );
+  const RECAP_MIN_COVERAGE = 0.85;
+  const stem = (w) => w.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 5);
+  const keyWords = (text) =>
+    (text.match(/[A-Za-z][A-Za-z-]{3,}/g) || []).filter((w) => !RECAP_IGNORE.has(w.toLowerCase())).map(stem);
+
+  function dropRecaps(run, lines, spans) {
+    const all = [];
+    for (const line of lines) if (line.sentences) for (const s of line.sentences) if (s.text) all.push(s);
+    for (const s of all) {
+      const plain = restore(s.text, spans);
+      if (!RECAP_MARKER_RE.test(plain)) continue;
+      const others = all.filter((o) => o !== s && o.text).map((o) => restore(o.text, spans)).join(' ');
+      const known = new Set(keyWords(others));
+      const mine = keyWords(plain.replace(RECAP_MARKER_RE, ''));
+      if (mine.length < 2) continue;
+      const covered = mine.filter((w) => known.has(w)).length / mine.length;
+      if (covered >= RECAP_MIN_COVERAGE) s.text = tryRewrite(run, RECAP_RULE, s.text, '');
+    }
+  }
+
   function sentencePass(run, work, spans, level) {
     const lines = parseDocument(work);
+    dropRecaps(run, lines, spans); // before the rules strip the "As I mentioned" marker
     const sentenceRules = rules.forLevel(rules.SENTENCE_RULES, level);
     let isFirstSentence = true;
     for (const line of lines) {

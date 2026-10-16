@@ -396,6 +396,11 @@
     ['in the process of', '', 'conservative', { lookahead: '\\s+\\w+ing\\b' }],
     ['as a matter of fact', 'in fact', 'balanced'],
     ['very unique', 'unique', 'balanced'],
+    ['simple and easy-to-understand', 'simple'],
+    ['simple and easy to understand', 'simple'],
+    ['easy-to-understand and simple', 'simple'],
+    ['simple and easy', 'simple'],
+    ['clear and easy-to-understand', 'clear'],
     ['explain to me', 'explain'],
     ['describe to me', 'describe'],
     ['provide me with', 'provide'],
@@ -489,6 +494,21 @@
     },
   };
 
+  // ", and please make sure ..." -> ", and make sure ..." (mid-sentence
+  // politeness before an instruction verb; the verb and everything after stay).
+  const pleaseMid = {
+    id: 'please-mid',
+    category: 'politeness-preamble',
+    level: 'conservative',
+    phase: 'text',
+    description: 'Removed "please" before an instruction in the middle of a sentence',
+    vocabulary: words('please'),
+    pattern: new RegExp(`(?<=(?:,|\\band|\\bso|\\bthen|\\bbut)\\s+)please\\s+(?=(?:${IMPERATIVE_STARTERS})\\b)`, 'gi'),
+    replace() {
+      return '';
+    },
+  };
+
   // "Summarize this for me." -> "Summarize this."
   const forMe = {
     id: 'for-me',
@@ -518,7 +538,7 @@
     pleaseSuffix,
     helpMe,
   ];
-  const TEXT_RULES = [...PHRASES.map(phraseRule), kindly, basically, doubledWord, intensifier, forMe];
+  const TEXT_RULES = [...PHRASES.map(phraseRule), kindly, basically, doubledWord, intensifier, forMe, pleaseMid];
 
   // Discourse markers ignored when deciding whether two sentences repeat.
   const REPEAT_MARKERS = new RegExp(
