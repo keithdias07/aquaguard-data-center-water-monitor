@@ -1,44 +1,44 @@
 {
   "schema": "aquaguard.prompt-optimizer.eval",
   "schemaVersion": 1,
-  "generatedAt": "2026-10-16T20:30:57.488Z",
+  "generatedAt": "2026-10-16T22:47:43.984Z",
   "engineVersion": "1.0.0",
   "tokenizer": "heuristic-bpe-v1",
   "dataset": {
     "file": "extension/eval/prompts.json",
-    "prompts": 45,
+    "prompts": 52,
     "synthetic": true
   },
   "summary": {
     "conservative": {
-      "prompts": 45,
-      "changed": 26,
-      "unchanged": 19,
+      "prompts": 52,
+      "changed": 31,
+      "unchanged": 21,
       "expectationAccuracy": 100,
       "mustPreserveRate": 100,
       "termPreservationRate": 100,
       "falseCompressions": 0,
-      "shouldNotCompressCases": 15,
-      "meanReductionPctChangedOnly": 20.6,
-      "meanReductionPctAllPrompts": 11.9,
-      "aggregateReductionPctExact": 15.8,
-      "latencyMsMedian": 0.273,
-      "latencyMsMax": 1.345
+      "shouldNotCompressCases": 17,
+      "meanReductionPctChangedOnly": 22.8,
+      "meanReductionPctAllPrompts": 13.6,
+      "aggregateReductionPctExact": 18.9,
+      "latencyMsMedian": 0.274,
+      "latencyMsMax": 2.041
     },
     "balanced": {
-      "prompts": 45,
-      "changed": 26,
-      "unchanged": 19,
+      "prompts": 52,
+      "changed": 31,
+      "unchanged": 21,
       "expectationAccuracy": 100,
       "mustPreserveRate": 100,
       "termPreservationRate": 100,
       "falseCompressions": 0,
-      "shouldNotCompressCases": 15,
-      "meanReductionPctChangedOnly": 21,
-      "meanReductionPctAllPrompts": 12.1,
-      "aggregateReductionPctExact": 16.1,
-      "latencyMsMedian": 0.247,
-      "latencyMsMax": 0.76
+      "shouldNotCompressCases": 17,
+      "meanReductionPctChangedOnly": 23.1,
+      "meanReductionPctAllPrompts": 13.8,
+      "aggregateReductionPctExact": 19.1,
+      "latencyMsMedian": 0.265,
+      "latencyMsMax": 1.899
     }
   },
   "categories": {
@@ -55,8 +55,8 @@
         "meanReductionPctChangedOnly": 46.9,
         "meanReductionPctAllPrompts": 18.8,
         "aggregateReductionPctExact": 33.9,
-        "latencyMsMedian": 0.273,
-        "latencyMsMax": 0.539
+        "latencyMsMedian": 0.22,
+        "latencyMsMax": 0.446
       },
       "coding": {
         "prompts": 7,
@@ -70,8 +70,8 @@
         "meanReductionPctChangedOnly": 21.2,
         "meanReductionPctAllPrompts": 15.2,
         "aggregateReductionPctExact": 16.5,
-        "latencyMsMedian": 0.626,
-        "latencyMsMax": 1.165
+        "latencyMsMedian": 0.705,
+        "latencyMsMax": 0.856
       },
       "long-technical": {
         "prompts": 4,
@@ -85,8 +85,8 @@
         "meanReductionPctChangedOnly": 16.1,
         "meanReductionPctAllPrompts": 12,
         "aggregateReductionPctExact": 15.2,
-        "latencyMsMedian": 0.779,
-        "latencyMsMax": 1.345
+        "latencyMsMedian": 0.804,
+        "latencyMsMax": 0.954
       },
       "multi-step": {
         "prompts": 3,
@@ -100,8 +100,8 @@
         "meanReductionPctChangedOnly": 8.5,
         "meanReductionPctAllPrompts": 5.7,
         "aggregateReductionPctExact": 6,
-        "latencyMsMedian": 0.392,
-        "latencyMsMax": 0.776
+        "latencyMsMedian": 0.342,
+        "latencyMsMax": 0.574
       },
       "numbers-units": {
         "prompts": 4,
@@ -115,23 +115,23 @@
         "meanReductionPctChangedOnly": 12.8,
         "meanReductionPctAllPrompts": 9.6,
         "aggregateReductionPctExact": 11.3,
-        "latencyMsMedian": 0.242,
-        "latencyMsMax": 0.302
+        "latencyMsMedian": 0.283,
+        "latencyMsMax": 0.316
       },
       "constraints-negations": {
-        "prompts": 6,
-        "changed": 4,
+        "prompts": 8,
+        "changed": 6,
         "unchanged": 2,
         "expectationAccuracy": 100,
         "mustPreserveRate": 100,
         "termPreservationRate": 100,
         "falseCompressions": 0,
         "shouldNotCompressCases": 1,
-        "meanReductionPctChangedOnly": 22.2,
-        "meanReductionPctAllPrompts": 14.8,
-        "aggregateReductionPctExact": 18.5,
-        "latencyMsMedian": 0.255,
-        "latencyMsMax": 0.44
+        "meanReductionPctChangedOnly": 24.2,
+        "meanReductionPctAllPrompts": 18.1,
+        "aggregateReductionPctExact": 20.5,
+        "latencyMsMedian": 0.285,
+        "latencyMsMax": 0.494
       },
       "structured-output": {
         "prompts": 4,
@@ -145,38 +145,53 @@
         "meanReductionPctChangedOnly": 11,
         "meanReductionPctAllPrompts": 8.2,
         "aggregateReductionPctExact": 9.3,
-        "latencyMsMedian": 0.35,
-        "latencyMsMax": 0.513
+        "latencyMsMedian": 0.365,
+        "latencyMsMax": 0.546
       },
       "should-not-compress": {
-        "prompts": 8,
-        "changed": 0,
-        "unchanged": 8,
+        "prompts": 11,
+        "changed": 1,
+        "unchanged": 10,
         "expectationAccuracy": 100,
         "mustPreserveRate": 100,
         "termPreservationRate": 100,
         "falseCompressions": 0,
-        "shouldNotCompressCases": 8,
-        "meanReductionPctChangedOnly": 0,
-        "meanReductionPctAllPrompts": 0,
-        "aggregateReductionPctExact": 0,
-        "latencyMsMedian": 0.125,
-        "latencyMsMax": 0.178
+        "shouldNotCompressCases": 10,
+        "meanReductionPctChangedOnly": 22.2,
+        "meanReductionPctAllPrompts": 2,
+        "aggregateReductionPctExact": 1.3,
+        "latencyMsMedian": 0.105,
+        "latencyMsMax": 0.15
       },
       "verbose": {
-        "prompts": 4,
-        "changed": 4,
+        "prompts": 5,
+        "changed": 5,
         "unchanged": 0,
         "expectationAccuracy": 100,
         "mustPreserveRate": 100,
         "termPreservationRate": 100,
         "falseCompressions": 0,
         "shouldNotCompressCases": 0,
-        "meanReductionPctChangedOnly": 27.7,
-        "meanReductionPctAllPrompts": 27.7,
-        "aggregateReductionPctExact": 30.9,
-        "latencyMsMedian": 0.469,
-        "latencyMsMax": 0.611
+        "meanReductionPctChangedOnly": 33.9,
+        "meanReductionPctAllPrompts": 33.9,
+        "aggregateReductionPctExact": 34.4,
+        "latencyMsMedian": 0.276,
+        "latencyMsMax": 0.567
+      },
+      "regression": {
+        "prompts": 1,
+        "changed": 1,
+        "unchanged": 0,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 35.1,
+        "meanReductionPctAllPrompts": 35.1,
+        "aggregateReductionPctExact": 35.1,
+        "latencyMsMedian": 2.041,
+        "latencyMsMax": 2.041
       }
     },
     "balanced": {
@@ -192,8 +207,8 @@
         "meanReductionPctChangedOnly": 46.9,
         "meanReductionPctAllPrompts": 18.8,
         "aggregateReductionPctExact": 33.9,
-        "latencyMsMedian": 0.118,
-        "latencyMsMax": 0.305
+        "latencyMsMedian": 0.081,
+        "latencyMsMax": 0.277
       },
       "coding": {
         "prompts": 7,
@@ -207,8 +222,8 @@
         "meanReductionPctChangedOnly": 22.2,
         "meanReductionPctAllPrompts": 15.9,
         "aggregateReductionPctExact": 17.3,
-        "latencyMsMedian": 0.452,
-        "latencyMsMax": 0.602
+        "latencyMsMedian": 0.403,
+        "latencyMsMax": 0.532
       },
       "long-technical": {
         "prompts": 4,
@@ -222,8 +237,8 @@
         "meanReductionPctChangedOnly": 16.1,
         "meanReductionPctAllPrompts": 12,
         "aggregateReductionPctExact": 15.2,
-        "latencyMsMedian": 0.72,
-        "latencyMsMax": 0.76
+        "latencyMsMedian": 0.703,
+        "latencyMsMax": 0.858
       },
       "multi-step": {
         "prompts": 3,
@@ -237,8 +252,8 @@
         "meanReductionPctChangedOnly": 8.5,
         "meanReductionPctAllPrompts": 5.7,
         "aggregateReductionPctExact": 6,
-        "latencyMsMedian": 0.294,
-        "latencyMsMax": 0.485
+        "latencyMsMedian": 0.331,
+        "latencyMsMax": 0.537
       },
       "numbers-units": {
         "prompts": 4,
@@ -252,23 +267,23 @@
         "meanReductionPctChangedOnly": 12.8,
         "meanReductionPctAllPrompts": 9.6,
         "aggregateReductionPctExact": 11.3,
-        "latencyMsMedian": 0.238,
-        "latencyMsMax": 0.28
+        "latencyMsMedian": 0.272,
+        "latencyMsMax": 0.292
       },
       "constraints-negations": {
-        "prompts": 6,
-        "changed": 4,
+        "prompts": 8,
+        "changed": 6,
         "unchanged": 2,
         "expectationAccuracy": 100,
         "mustPreserveRate": 100,
         "termPreservationRate": 100,
         "falseCompressions": 0,
         "shouldNotCompressCases": 1,
-        "meanReductionPctChangedOnly": 22.2,
-        "meanReductionPctAllPrompts": 14.8,
-        "aggregateReductionPctExact": 18.5,
-        "latencyMsMedian": 0.268,
-        "latencyMsMax": 0.417
+        "meanReductionPctChangedOnly": 24.2,
+        "meanReductionPctAllPrompts": 18.1,
+        "aggregateReductionPctExact": 20.5,
+        "latencyMsMedian": 0.279,
+        "latencyMsMax": 0.495
       },
       "structured-output": {
         "prompts": 4,
@@ -282,47 +297,62 @@
         "meanReductionPctChangedOnly": 11,
         "meanReductionPctAllPrompts": 8.2,
         "aggregateReductionPctExact": 9.3,
-        "latencyMsMedian": 0.338,
-        "latencyMsMax": 0.49
+        "latencyMsMedian": 0.362,
+        "latencyMsMax": 0.525
       },
       "should-not-compress": {
-        "prompts": 8,
-        "changed": 0,
-        "unchanged": 8,
+        "prompts": 11,
+        "changed": 1,
+        "unchanged": 10,
         "expectationAccuracy": 100,
         "mustPreserveRate": 100,
         "termPreservationRate": 100,
         "falseCompressions": 0,
-        "shouldNotCompressCases": 8,
-        "meanReductionPctChangedOnly": 0,
-        "meanReductionPctAllPrompts": 0,
-        "aggregateReductionPctExact": 0,
-        "latencyMsMedian": 0.126,
-        "latencyMsMax": 0.247
+        "shouldNotCompressCases": 10,
+        "meanReductionPctChangedOnly": 22.2,
+        "meanReductionPctAllPrompts": 2,
+        "aggregateReductionPctExact": 1.3,
+        "latencyMsMedian": 0.102,
+        "latencyMsMax": 0.156
       },
       "verbose": {
-        "prompts": 4,
-        "changed": 4,
+        "prompts": 5,
+        "changed": 5,
         "unchanged": 0,
         "expectationAccuracy": 100,
         "mustPreserveRate": 100,
         "termPreservationRate": 100,
         "falseCompressions": 0,
         "shouldNotCompressCases": 0,
-        "meanReductionPctChangedOnly": 28.6,
-        "meanReductionPctAllPrompts": 28.6,
-        "aggregateReductionPctExact": 32,
-        "latencyMsMedian": 0.421,
-        "latencyMsMax": 0.585
+        "meanReductionPctChangedOnly": 34.6,
+        "meanReductionPctAllPrompts": 34.6,
+        "aggregateReductionPctExact": 35.4,
+        "latencyMsMedian": 0.276,
+        "latencyMsMax": 0.533
+      },
+      "regression": {
+        "prompts": 1,
+        "changed": 1,
+        "unchanged": 0,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 35.1,
+        "meanReductionPctAllPrompts": 35.1,
+        "aggregateReductionPctExact": 35.1,
+        "latencyMsMedian": 1.899,
+        "latencyMsMax": 1.899
       }
     }
   },
   "calibration": {
     "reference": "o200k_base (js-tiktoken)",
-    "samples": 90,
-    "meanAbsPctError": 4.3,
-    "meanSignedPctError": 3.2,
-    "within10Pct": 84.4
+    "samples": 104,
+    "meanAbsPctError": 3.8,
+    "meanSignedPctError": 2.8,
+    "within10Pct": 86.5
   },
   "rows": [
     {
@@ -348,7 +378,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.273,
+      "latencyMsMedian": 0.22,
       "transformations": [],
       "missingCount": 0
     },
@@ -375,7 +405,7 @@
         "saved": 7,
         "reductionPct": 43.75
       },
-      "latencyMsMedian": 0.433,
+      "latencyMsMedian": 0.423,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -415,7 +445,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.168,
+      "latencyMsMedian": 0.122,
       "transformations": [],
       "missingCount": 0
     },
@@ -442,7 +472,7 @@
         "saved": 14,
         "reductionPct": 50
       },
-      "latencyMsMedian": 0.539,
+      "latencyMsMedian": 0.446,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -482,7 +512,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.155,
+      "latencyMsMedian": 0.15,
       "transformations": [],
       "missingCount": 0
     },
@@ -509,7 +539,7 @@
         "saved": 9,
         "reductionPct": 31.03
       },
-      "latencyMsMedian": 0.626,
+      "latencyMsMedian": 0.763,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -549,7 +579,7 @@
         "saved": 10,
         "reductionPct": 14.29
       },
-      "latencyMsMedian": 0.776,
+      "latencyMsMedian": 0.856,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -585,7 +615,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.273,
+      "latencyMsMedian": 0.258,
       "transformations": [],
       "missingCount": 0
     },
@@ -612,7 +642,7 @@
         "saved": 3,
         "reductionPct": 7.5
       },
-      "latencyMsMedian": 0.617,
+      "latencyMsMedian": 0.621,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -644,7 +674,7 @@
         "saved": 16,
         "reductionPct": 36.36
       },
-      "latencyMsMedian": 1.165,
+      "latencyMsMedian": 0.847,
       "transformations": [
         {
           "ruleId": "please-prefix",
@@ -680,7 +710,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.225,
+      "latencyMsMedian": 0.177,
       "transformations": [],
       "missingCount": 0
     },
@@ -707,7 +737,7 @@
         "saved": 8,
         "reductionPct": 17.02
       },
-      "latencyMsMedian": 1.098,
+      "latencyMsMedian": 0.705,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -747,7 +777,7 @@
         "saved": 24,
         "reductionPct": 26.67
       },
-      "latencyMsMedian": 1.345,
+      "latencyMsMedian": 0.934,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -791,7 +821,7 @@
         "saved": 9,
         "reductionPct": 11.84
       },
-      "latencyMsMedian": 0.678,
+      "latencyMsMedian": 0.673,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -831,7 +861,7 @@
         "saved": 6,
         "reductionPct": 9.68
       },
-      "latencyMsMedian": 0.879,
+      "latencyMsMedian": 0.954,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -867,7 +897,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.196,
+      "latencyMsMedian": 0.149,
       "transformations": [],
       "missingCount": 0
     },
@@ -894,7 +924,7 @@
         "saved": 3,
         "reductionPct": 5.88
       },
-      "latencyMsMedian": 0.776,
+      "latencyMsMedian": 0.574,
       "transformations": [
         {
           "ruleId": "please-prefix",
@@ -930,7 +960,7 @@
         "saved": 4,
         "reductionPct": 11.11
       },
-      "latencyMsMedian": 0.392,
+      "latencyMsMedian": 0.342,
       "transformations": [
         {
           "ruleId": "verbose-phrase",
@@ -962,7 +992,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.197,
+      "latencyMsMedian": 0.152,
       "transformations": [],
       "missingCount": 0
     },
@@ -989,7 +1019,7 @@
         "saved": 8,
         "reductionPct": 21.62
       },
-      "latencyMsMedian": 0.302,
+      "latencyMsMedian": 0.316,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -1025,7 +1055,7 @@
         "saved": 5,
         "reductionPct": 14.29
       },
-      "latencyMsMedian": 0.247,
+      "latencyMsMedian": 0.289,
       "transformations": [
         {
           "ruleId": "verbose-phrase",
@@ -1057,7 +1087,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.091,
+      "latencyMsMedian": 0.075,
       "transformations": [],
       "missingCount": 0
     },
@@ -1084,7 +1114,7 @@
         "saved": 1,
         "reductionPct": 2.5
       },
-      "latencyMsMedian": 0.237,
+      "latencyMsMedian": 0.277,
       "transformations": [
         {
           "ruleId": "verbose-phrase",
@@ -1116,7 +1146,7 @@
         "saved": 11,
         "reductionPct": 25
       },
-      "latencyMsMedian": 0.44,
+      "latencyMsMedian": 0.494,
       "transformations": [
         {
           "ruleId": "duplicate-sentence",
@@ -1148,7 +1178,7 @@
         "saved": 3,
         "reductionPct": 11.54
       },
-      "latencyMsMedian": 0.239,
+      "latencyMsMedian": 0.281,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -1180,7 +1210,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.126,
+      "latencyMsMedian": 0.1,
       "transformations": [],
       "missingCount": 0
     },
@@ -1207,7 +1237,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.163,
+      "latencyMsMedian": 0.149,
       "transformations": [],
       "missingCount": 0
     },
@@ -1234,7 +1264,7 @@
         "saved": 9,
         "reductionPct": 23.68
       },
-      "latencyMsMedian": 0.355,
+      "latencyMsMedian": 0.335,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -1270,7 +1300,7 @@
         "saved": 8,
         "reductionPct": 28.57
       },
-      "latencyMsMedian": 0.271,
+      "latencyMsMedian": 0.288,
       "transformations": [
         {
           "ruleId": "please-prefix",
@@ -1306,7 +1336,7 @@
         "saved": 3,
         "reductionPct": 5.77
       },
-      "latencyMsMedian": 0.513,
+      "latencyMsMedian": 0.546,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -1338,7 +1368,7 @@
         "saved": 5,
         "reductionPct": 12.82
       },
-      "latencyMsMedian": 0.445,
+      "latencyMsMedian": 0.459,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -1370,7 +1400,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.097,
+      "latencyMsMedian": 0.082,
       "transformations": [],
       "missingCount": 0
     },
@@ -1397,7 +1427,7 @@
         "saved": 4,
         "reductionPct": 14.29
       },
-      "latencyMsMedian": 0.255,
+      "latencyMsMedian": 0.271,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -1433,7 +1463,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.139,
+      "latencyMsMedian": 0.1,
       "transformations": [],
       "missingCount": 0
     },
@@ -1460,7 +1490,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.153,
+      "latencyMsMedian": 0.105,
       "transformations": [],
       "missingCount": 0
     },
@@ -1487,7 +1517,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.08,
+      "latencyMsMedian": 0.074,
       "transformations": [],
       "missingCount": 0
     },
@@ -1514,7 +1544,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.11,
+      "latencyMsMedian": 0.081,
       "transformations": [],
       "missingCount": 0
     },
@@ -1541,7 +1571,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.1,
+      "latencyMsMedian": 0.065,
       "transformations": [],
       "missingCount": 0
     },
@@ -1568,7 +1598,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.169,
+      "latencyMsMedian": 0.124,
       "transformations": [],
       "missingCount": 0
     },
@@ -1595,7 +1625,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.178,
+      "latencyMsMedian": 0.135,
       "transformations": [],
       "missingCount": 0
     },
@@ -1622,7 +1652,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.102,
+      "latencyMsMedian": 0.066,
       "transformations": [],
       "missingCount": 0
     },
@@ -1649,7 +1679,7 @@
         "saved": 32,
         "reductionPct": 58.18
       },
-      "latencyMsMedian": 0.505,
+      "latencyMsMedian": 0.427,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -1689,7 +1719,7 @@
         "saved": 12,
         "reductionPct": 19.05
       },
-      "latencyMsMedian": 0.611,
+      "latencyMsMedian": 0.567,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -1725,7 +1755,7 @@
         "saved": 7,
         "reductionPct": 20.59
       },
-      "latencyMsMedian": 0.41,
+      "latencyMsMedian": 0.276,
       "transformations": [
         {
           "ruleId": "pleasantry",
@@ -1747,24 +1777,294 @@
       "lostTerms": [],
       "heuristic": {
         "original": 23,
-        "optimized": 20,
-        "saved": 3,
-        "reductionPct": 13.04
+        "optimized": 10,
+        "saved": 13,
+        "reductionPct": 56.52
       },
       "exactO200k": {
         "original": 23,
-        "optimized": 20,
-        "saved": 3,
-        "reductionPct": 13.04
+        "optimized": 10,
+        "saved": 13,
+        "reductionPct": 56.52
       },
-      "latencyMsMedian": 0.433,
+      "latencyMsMedian": 0.265,
       "transformations": [
         {
           "ruleId": "please-prefix",
           "count": 2
         },
         {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        },
+        {
           "ruleId": "doubled-word",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "regression-ml-01",
+      "category": "regression",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 232,
+        "optimized": 152,
+        "saved": 80,
+        "reductionPct": 34.48
+      },
+      "exactO200k": {
+        "original": 222,
+        "optimized": 144,
+        "saved": 78,
+        "reductionPct": 35.14
+      },
+      "latencyMsMedian": 2.041,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 2
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 2
+        },
+        {
+          "ruleId": "request-preamble",
+          "count": 2
+        },
+        {
+          "ruleId": "preference-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "please-prefix",
+          "count": 3
+        },
+        {
+          "ruleId": "transition",
+          "count": 1
+        },
+        {
+          "ruleId": "note-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        },
+        {
+          "ruleId": "restated-context",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 3
+        },
+        {
+          "ruleId": "intensifier",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-01",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "either",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 9,
+        "optimized": 7,
+        "saved": 2,
+        "reductionPct": 22.22
+      },
+      "exactO200k": {
+        "original": 9,
+        "optimized": 7,
+        "saved": 2,
+        "reductionPct": 22.22
+      },
+      "latencyMsMedian": 0.15,
+      "transformations": [
+        {
+          "ruleId": "transition",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-02",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 28,
+        "optimized": 22,
+        "saved": 6,
+        "reductionPct": 21.43
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 22,
+        "saved": 6,
+        "reductionPct": 21.43
+      },
+      "latencyMsMedian": 0.29,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-03",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 14,
+        "optimized": 14,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 14,
+        "optimized": 14,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.113,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-04",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 17,
+        "optimized": 17,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 17,
+        "optimized": 17,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.123,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-05",
+      "category": "verbose",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 20,
+        "optimized": 17,
+        "saved": 3,
+        "reductionPct": 15
+      },
+      "exactO200k": {
+        "original": 20,
+        "optimized": 17,
+        "saved": 3,
+        "reductionPct": 15
+      },
+      "latencyMsMedian": 0.219,
+      "transformations": [
+        {
+          "ruleId": "know-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-06",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 23,
+        "optimized": 15,
+        "saved": 8,
+        "reductionPct": 34.78
+      },
+      "exactO200k": {
+        "original": 23,
+        "optimized": 15,
+        "saved": 8,
+        "reductionPct": 34.78
+      },
+      "latencyMsMedian": 0.259,
+      "transformations": [
+        {
+          "ruleId": "note-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "transition",
+          "count": 1
+        },
+        {
+          "ruleId": "please-prefix",
           "count": 1
         }
       ],
@@ -1793,7 +2093,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.118,
+      "latencyMsMedian": 0.081,
       "transformations": [],
       "missingCount": 0
     },
@@ -1820,7 +2120,7 @@
         "saved": 7,
         "reductionPct": 43.75
       },
-      "latencyMsMedian": 0.265,
+      "latencyMsMedian": 0.199,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -1860,7 +2160,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.085,
+      "latencyMsMedian": 0.072,
       "transformations": [],
       "missingCount": 0
     },
@@ -1887,7 +2187,7 @@
         "saved": 14,
         "reductionPct": 50
       },
-      "latencyMsMedian": 0.305,
+      "latencyMsMedian": 0.277,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -1927,7 +2227,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.094,
+      "latencyMsMedian": 0.069,
       "transformations": [],
       "missingCount": 0
     },
@@ -1954,7 +2254,7 @@
         "saved": 9,
         "reductionPct": 31.03
       },
-      "latencyMsMedian": 0.316,
+      "latencyMsMedian": 0.311,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -1994,7 +2294,7 @@
         "saved": 10,
         "reductionPct": 14.29
       },
-      "latencyMsMedian": 0.493,
+      "latencyMsMedian": 0.441,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -2030,7 +2330,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.189,
+      "latencyMsMedian": 0.157,
       "transformations": [],
       "missingCount": 0
     },
@@ -2057,7 +2357,7 @@
         "saved": 5,
         "reductionPct": 12.5
       },
-      "latencyMsMedian": 0.602,
+      "latencyMsMedian": 0.403,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -2093,7 +2393,7 @@
         "saved": 16,
         "reductionPct": 36.36
       },
-      "latencyMsMedian": 0.493,
+      "latencyMsMedian": 0.532,
       "transformations": [
         {
           "ruleId": "please-prefix",
@@ -2129,7 +2429,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.116,
+      "latencyMsMedian": 0.102,
       "transformations": [],
       "missingCount": 0
     },
@@ -2156,7 +2456,7 @@
         "saved": 8,
         "reductionPct": 17.02
       },
-      "latencyMsMedian": 0.452,
+      "latencyMsMedian": 0.421,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -2196,7 +2496,7 @@
         "saved": 24,
         "reductionPct": 26.67
       },
-      "latencyMsMedian": 0.737,
+      "latencyMsMedian": 0.788,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -2240,7 +2540,7 @@
         "saved": 9,
         "reductionPct": 11.84
       },
-      "latencyMsMedian": 0.702,
+      "latencyMsMedian": 0.617,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -2280,7 +2580,7 @@
         "saved": 6,
         "reductionPct": 9.68
       },
-      "latencyMsMedian": 0.76,
+      "latencyMsMedian": 0.858,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -2316,7 +2616,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.171,
+      "latencyMsMedian": 0.143,
       "transformations": [],
       "missingCount": 0
     },
@@ -2343,7 +2643,7 @@
         "saved": 3,
         "reductionPct": 5.88
       },
-      "latencyMsMedian": 0.485,
+      "latencyMsMedian": 0.537,
       "transformations": [
         {
           "ruleId": "please-prefix",
@@ -2379,7 +2679,7 @@
         "saved": 4,
         "reductionPct": 11.11
       },
-      "latencyMsMedian": 0.294,
+      "latencyMsMedian": 0.331,
       "transformations": [
         {
           "ruleId": "verbose-phrase",
@@ -2411,7 +2711,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.169,
+      "latencyMsMedian": 0.146,
       "transformations": [],
       "missingCount": 0
     },
@@ -2438,7 +2738,7 @@
         "saved": 8,
         "reductionPct": 21.62
       },
-      "latencyMsMedian": 0.28,
+      "latencyMsMedian": 0.292,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -2474,7 +2774,7 @@
         "saved": 5,
         "reductionPct": 14.29
       },
-      "latencyMsMedian": 0.233,
+      "latencyMsMedian": 0.267,
       "transformations": [
         {
           "ruleId": "verbose-phrase",
@@ -2506,7 +2806,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.09,
+      "latencyMsMedian": 0.078,
       "transformations": [],
       "missingCount": 0
     },
@@ -2533,7 +2833,7 @@
         "saved": 1,
         "reductionPct": 2.5
       },
-      "latencyMsMedian": 0.242,
+      "latencyMsMedian": 0.277,
       "transformations": [
         {
           "ruleId": "verbose-phrase",
@@ -2565,7 +2865,7 @@
         "saved": 11,
         "reductionPct": 25
       },
-      "latencyMsMedian": 0.417,
+      "latencyMsMedian": 0.495,
       "transformations": [
         {
           "ruleId": "duplicate-sentence",
@@ -2597,7 +2897,7 @@
         "saved": 3,
         "reductionPct": 11.54
       },
-      "latencyMsMedian": 0.235,
+      "latencyMsMedian": 0.277,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -2629,7 +2929,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.113,
+      "latencyMsMedian": 0.102,
       "transformations": [],
       "missingCount": 0
     },
@@ -2656,7 +2956,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.158,
+      "latencyMsMedian": 0.145,
       "transformations": [],
       "missingCount": 0
     },
@@ -2683,7 +2983,7 @@
         "saved": 9,
         "reductionPct": 23.68
       },
-      "latencyMsMedian": 0.301,
+      "latencyMsMedian": 0.328,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -2719,7 +3019,7 @@
         "saved": 8,
         "reductionPct": 28.57
       },
-      "latencyMsMedian": 0.304,
+      "latencyMsMedian": 0.281,
       "transformations": [
         {
           "ruleId": "please-prefix",
@@ -2755,7 +3055,7 @@
         "saved": 3,
         "reductionPct": 5.77
       },
-      "latencyMsMedian": 0.49,
+      "latencyMsMedian": 0.525,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -2787,7 +3087,7 @@
         "saved": 5,
         "reductionPct": 12.82
       },
-      "latencyMsMedian": 0.416,
+      "latencyMsMedian": 0.45,
       "transformations": [
         {
           "ruleId": "want-preamble",
@@ -2819,7 +3119,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.099,
+      "latencyMsMedian": 0.082,
       "transformations": [],
       "missingCount": 0
     },
@@ -2846,7 +3146,7 @@
         "saved": 4,
         "reductionPct": 14.29
       },
-      "latencyMsMedian": 0.26,
+      "latencyMsMedian": 0.273,
       "transformations": [
         {
           "ruleId": "request-preamble",
@@ -2882,7 +3182,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.123,
+      "latencyMsMedian": 0.102,
       "transformations": [],
       "missingCount": 0
     },
@@ -2909,7 +3209,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.138,
+      "latencyMsMedian": 0.103,
       "transformations": [],
       "missingCount": 0
     },
@@ -2936,7 +3236,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.065,
+      "latencyMsMedian": 0.064,
       "transformations": [],
       "missingCount": 0
     },
@@ -2963,7 +3263,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.089,
+      "latencyMsMedian": 0.075,
       "transformations": [],
       "missingCount": 0
     },
@@ -2990,7 +3290,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.079,
+      "latencyMsMedian": 0.062,
       "transformations": [],
       "missingCount": 0
     },
@@ -3017,7 +3317,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.178,
+      "latencyMsMedian": 0.102,
       "transformations": [],
       "missingCount": 0
     },
@@ -3044,7 +3344,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.247,
+      "latencyMsMedian": 0.121,
       "transformations": [],
       "missingCount": 0
     },
@@ -3071,7 +3371,7 @@
         "saved": 0,
         "reductionPct": 0
       },
-      "latencyMsMedian": 0.128,
+      "latencyMsMedian": 0.062,
       "transformations": [],
       "missingCount": 0
     },
@@ -3098,7 +3398,7 @@
         "saved": 34,
         "reductionPct": 61.82
       },
-      "latencyMsMedian": 0.469,
+      "latencyMsMedian": 0.412,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -3142,7 +3442,7 @@
         "saved": 12,
         "reductionPct": 19.05
       },
-      "latencyMsMedian": 0.585,
+      "latencyMsMedian": 0.533,
       "transformations": [
         {
           "ruleId": "greeting",
@@ -3178,7 +3478,7 @@
         "saved": 7,
         "reductionPct": 20.59
       },
-      "latencyMsMedian": 0.23,
+      "latencyMsMedian": 0.276,
       "transformations": [
         {
           "ruleId": "pleasantry",
@@ -3200,24 +3500,294 @@
       "lostTerms": [],
       "heuristic": {
         "original": 23,
-        "optimized": 20,
-        "saved": 3,
-        "reductionPct": 13.04
+        "optimized": 10,
+        "saved": 13,
+        "reductionPct": 56.52
       },
       "exactO200k": {
         "original": 23,
-        "optimized": 20,
-        "saved": 3,
-        "reductionPct": 13.04
+        "optimized": 10,
+        "saved": 13,
+        "reductionPct": 56.52
       },
-      "latencyMsMedian": 0.372,
+      "latencyMsMedian": 0.253,
       "transformations": [
         {
           "ruleId": "please-prefix",
           "count": 2
         },
         {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        },
+        {
           "ruleId": "doubled-word",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "regression-ml-01",
+      "category": "regression",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 232,
+        "optimized": 152,
+        "saved": 80,
+        "reductionPct": 34.48
+      },
+      "exactO200k": {
+        "original": 222,
+        "optimized": 144,
+        "saved": 78,
+        "reductionPct": 35.14
+      },
+      "latencyMsMedian": 1.899,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 2
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 2
+        },
+        {
+          "ruleId": "request-preamble",
+          "count": 2
+        },
+        {
+          "ruleId": "preference-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "please-prefix",
+          "count": 3
+        },
+        {
+          "ruleId": "transition",
+          "count": 1
+        },
+        {
+          "ruleId": "note-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        },
+        {
+          "ruleId": "restated-context",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 3
+        },
+        {
+          "ruleId": "intensifier",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-01",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "either",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 9,
+        "optimized": 7,
+        "saved": 2,
+        "reductionPct": 22.22
+      },
+      "exactO200k": {
+        "original": 9,
+        "optimized": 7,
+        "saved": 2,
+        "reductionPct": 22.22
+      },
+      "latencyMsMedian": 0.156,
+      "transformations": [
+        {
+          "ruleId": "transition",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-02",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 28,
+        "optimized": 22,
+        "saved": 6,
+        "reductionPct": 21.43
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 22,
+        "saved": 6,
+        "reductionPct": 21.43
+      },
+      "latencyMsMedian": 0.298,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-03",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 14,
+        "optimized": 14,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 14,
+        "optimized": 14,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.115,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-04",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 17,
+        "optimized": 17,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 17,
+        "optimized": 17,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.123,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-05",
+      "category": "verbose",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 20,
+        "optimized": 17,
+        "saved": 3,
+        "reductionPct": 15
+      },
+      "exactO200k": {
+        "original": 20,
+        "optimized": 17,
+        "saved": 3,
+        "reductionPct": 15
+      },
+      "latencyMsMedian": 0.214,
+      "transformations": [
+        {
+          "ruleId": "know-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "boundary-06",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 23,
+        "optimized": 15,
+        "saved": 8,
+        "reductionPct": 34.78
+      },
+      "exactO200k": {
+        "original": 23,
+        "optimized": 15,
+        "saved": 8,
+        "reductionPct": 34.78
+      },
+      "latencyMsMedian": 0.263,
+      "transformations": [
+        {
+          "ruleId": "note-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "transition",
+          "count": 1
+        },
+        {
+          "ruleId": "please-prefix",
           "count": 1
         }
       ],

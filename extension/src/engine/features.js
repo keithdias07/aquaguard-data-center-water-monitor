@@ -96,6 +96,11 @@
       bump(f.numbers, m.replace(/^\+/, ''));
       return ' ';
     });
+    // "keep in mind" / "bear in mind" are idioms, not the constraint "keep".
+    rest = rest.replace(/\b(?:keep|bear)\s+in\s+mind\b/gi, (m) => {
+      bump(f.content, m.toLowerCase().replace(/\s+/g, '-'));
+      return ' ';
+    });
     rest = rest.replace(PHRASE_RE, (m) => {
       bump(f.constraints, m.toLowerCase().replace(/\s+/g, ' '));
       return ' ';

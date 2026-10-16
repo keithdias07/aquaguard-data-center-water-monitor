@@ -49,9 +49,30 @@
     } else if (editor === 'ce') {
       mount.innerHTML = '<div id="field" class="field" contenteditable="true" data-aquaguard-field role="textbox" aria-label="Prompt"></div>';
     }
+    if (editor === 'stubborn') {
+      // An editor that keeps its own model and only accepts real keystrokes:
+      // programmatic changes (paste events, execCommand) are reverted. Used to
+      // test that AquaGuard keeps the user's text and falls back to preview.
+      mount.innerHTML = '<div id="field" class="field" contenteditable="true" data-aquaguard-field role="textbox" aria-label="Prompt"></div>';
+      const f = document.getElementById('field');
+      let model = '';
+      const render = () => { f.textContent = model; const r = document.createRange(); r.selectNodeContents(f); r.collapse(false); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      f.addEventListener('keydown', (e) => {
+        if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) model += e.key;
+        else if (e.key === 'Backspace') model = model.slice(0, -1);
+        else return;
+        e.preventDefault();
+        render();
+        f.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText' }));
+      });
+      f.addEventListener('paste', (e) => e.preventDefault());
+      f.addEventListener('input', () => { if (f.textContent !== model) render(); });
+    }
     window.__getText = () => {
       const f = document.getElementById('field');
       if (editor === 'textarea') return f.value;
+      if (editor === 'react') return window.__reactValue;
+      if (editor === 'stubborn') return f.textContent;
       if (editor === 'pm') return window.__pmText();
       if (editor === 'quill') return window.__quill.getText().replace(/\n$/, '');
       return f.innerText.replace(/\n$/, '');
@@ -104,6 +125,22 @@
       quill.root.id = 'field';
       quill.root.setAttribute('data-aquaguard-field', '');
       window.__quill = quill;
+      window.__ready = true;
+    } else if (editor === 'react') {
+      // A React-controlled textarea, like many chat sites. __getText() returns
+      // React's state, so tests prove React saw every change.
+      const load = (src) => new Promise((resolve) => { const s = document.createElement('script'); s.src = src; s.onload = resolve; document.head.appendChild(s); });
+      await load('/node_modules/react/umd/react.production.min.js');
+      await load('/node_modules/react-dom/umd/react-dom.production.min.js');
+      const h = window.React.createElement;
+      function Composer() {
+        const [value, setValue] = window.React.useState('');
+        window.__reactValue = value;
+        return h('textarea', { id: 'field', className: 'field', rows: 4, 'data-aquaguard-field': '', 'aria-label': 'Prompt', value, onChange: (e) => setValue(e.target.value) });
+      }
+      window.__reactValue = '';
+      window.ReactDOM.createRoot(document.getElementById('mount')).render(h(Composer));
+      await new Promise((r) => setTimeout(r, 50));
       window.__ready = true;
     } else {
       window.__ready = true;

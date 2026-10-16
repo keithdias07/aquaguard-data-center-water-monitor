@@ -26,10 +26,14 @@
     enabled: true,
     autoOptimize: true, // compute a suggestion after typing pauses
     applyMode: 'manual', // preview first; user clicks Apply
-    debounceMs: 800,
+    modeChosen: false, // false until the user answers the one-time Automatic/Manual question
+    debounceMs: 1000,
     minPromptChars: 40,
-    level: 'conservative',
+    level: 'balanced',
+    autoMinTokensSaved: 3, // automatic mode only replaces text when savings are meaningful
+    autoMinReductionPct: 3,
     disabledSites: [], // adapter ids, e.g. "claude"
+    autoBlockedSites: [], // sites whose editor rejected an automatic replacement -> preview there
     collectStats: false, // opt-in aggregate statistics
     impact: impact.DEFAULT_ASSUMPTIONS,
   });
@@ -37,7 +41,12 @@
   const LIMITS = {
     debounceMs: [300, 3000],
     minPromptChars: [0, 2000],
+    autoMinTokensSaved: [1, 500],
+    autoMinReductionPct: [0, 90],
   };
+
+  const siteList = (v) =>
+    Array.isArray(v) ? [...new Set(v.filter((s) => typeof s === 'string' && /^[a-z0-9-]{1,40}$/.test(s)))] : [];
 
   function clampInt(value, [lo, hi], fallback) {
     const n = Number(value);
@@ -60,12 +69,14 @@
       enabled: typeof r.enabled === 'boolean' ? r.enabled : d.enabled,
       autoOptimize: typeof r.autoOptimize === 'boolean' ? r.autoOptimize : d.autoOptimize,
       applyMode: APPLY_MODES.includes(r.applyMode) ? r.applyMode : d.applyMode,
+      modeChosen: typeof r.modeChosen === 'boolean' ? r.modeChosen : d.modeChosen,
       debounceMs: clampInt(r.debounceMs, LIMITS.debounceMs, d.debounceMs),
       minPromptChars: clampInt(r.minPromptChars, LIMITS.minPromptChars, d.minPromptChars),
       level: LEVELS.includes(r.level) ? r.level : d.level,
-      disabledSites: Array.isArray(r.disabledSites)
-        ? [...new Set(r.disabledSites.filter((s) => typeof s === 'string' && /^[a-z0-9-]{1,40}$/.test(s)))]
-        : [],
+      autoMinTokensSaved: clampInt(r.autoMinTokensSaved, LIMITS.autoMinTokensSaved, d.autoMinTokensSaved),
+      autoMinReductionPct: clampInt(r.autoMinReductionPct, LIMITS.autoMinReductionPct, d.autoMinReductionPct),
+      disabledSites: siteList(r.disabledSites),
+      autoBlockedSites: siteList(r.autoBlockedSites),
       collectStats: typeof r.collectStats === 'boolean' ? r.collectStats : d.collectStats,
       impact: {
         mode: imp.mode === 'illustrative' ? 'illustrative' : 'off',
@@ -263,7 +274,29 @@
     };
   }
 
+  /** Settings after the user answers the one-time question ('auto' | 'manual'). */
+  function chooseMode(settings, choice) {
+    return sanitizeSettings({
+      ...settings,
+      modeChosen: true,
+      applyMode: choice === 'auto' ? 'autoApply' : 'manual',
+    });
+  }
+
+  /** True when automatic replacement is allowed on this site. */
+  function autoApplyAllowed(settings, siteId) {
+    return (
+      settings.enabled &&
+      settings.modeChosen &&
+      settings.applyMode === 'autoApply' &&
+      !settings.disabledSites.includes(siteId) &&
+      !settings.autoBlockedSites.includes(siteId)
+    );
+  }
+
   return {
+    chooseMode,
+    autoApplyAllowed,
     APPLY_MODES,
     LEVELS,
     DEFAULT_SETTINGS,

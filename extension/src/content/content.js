@@ -26,7 +26,7 @@
   const MODE_LABELS = {
     manual: 'Preview first · you choose when to apply',
     previewOnly: 'Preview only · text is never modified',
-    autoApply: 'Auto-apply after you pause · always undoable',
+    autoApply: 'Automatic · replaces after you pause · Undo anytime',
   };
 
   const state = {
@@ -57,7 +57,26 @@
     onUndo: () => undo(),
     onOptimize: () => runNow(true),
     onLayout: () => layout(),
+    onChooseMode: (choice) => chooseMode(choice),
   });
+
+  // One-time answer to "Shorten prompts automatically?". Stored in
+  // chrome.storage.local, so every tab picks it up and it is never asked
+  // again unless the user resets it.
+  function chooseMode(choice) {
+    const next = AG.settings.chooseMode(state.settings, choice);
+    state.settings = next;
+    try {
+      chrome.storage.local.set({ settings: next });
+    } catch (e) {
+      /* extension reloaded */
+    }
+    if (choice === 'auto' && state.result && state.result.changed && currentText() === state.resultFor) {
+      apply(true); // the user just agreed: optimize the current draft right away
+    } else {
+      render();
+    }
+  }
 
   // ------------------------------------------------------------ settings
 
@@ -216,15 +235,53 @@
     render();
     startWatching();
 
-    if (!manual && result.changed && state.settings.applyMode === 'autoApply') maybeAutoApply(text);
+    if (!manual && result.changed && AG.settings.autoApplyAllowed(state.settings, adapter.id)) maybeAutoApply(text, result);
   }
 
-  function maybeAutoApply(text) {
+  /**
+   * Automatic replacement happens only when ALL of these hold; otherwise the
+   * suggestion simply stays available in the pill (nothing is lost):
+   *   - the user consented to automatic mode and the site is not blocked
+   *   - typing has paused for the configured delay and no IME composition is active
+   *   - the prompt box (still) has focus in a focused window
+   *   - the cursor is a plain caret at the end of the text (no selection)
+   *   - the saving is meaningful (minimum tokens AND minimum percentage)
+   *   - this is not text the user restored with Undo
+   */
+  function maybeAutoApply(text, result) {
+    const s = state.settings;
     const pausedFor = Date.now() - state.lastInputAt;
-    if (state.composing || pausedFor < state.settings.debounceMs - 50) return;
+    if (state.composing || pausedFor < s.debounceMs - 50) return;
+    if (!document.hasFocus()) return;
     if (document.activeElement !== state.field && !state.field.contains(document.activeElement)) return;
-    if (text === state.undoneOriginal) return; // the user already said no
+    if (text === state.undoneOriginal) return; // the user already said no to this text
+    if (state.session && state.session.autoPaused) return; // Undo pauses auto-apply for this draft
+    if (result.tokensSaved < s.autoMinTokensSaved || result.reductionPct < s.autoMinReductionPct) {
+      state.message = 'Saving too small to change your text automatically. Click Apply if you want it.';
+      render();
+      return;
+    }
+    if (!io.caretAtEnd(state.field)) {
+      state.message = 'Not replaced automatically because your cursor is mid-text or text is selected. Click Apply to use it.';
+      render();
+      return;
+    }
     apply(true);
+  }
+
+  // The editor on this site rejected an automatic replacement: keep the
+  // user's text, and use preview mode on this site from now on.
+  function blockAutoOnThisSite() {
+    const next = AG.settings.sanitizeSettings({
+      ...state.settings,
+      autoBlockedSites: [...state.settings.autoBlockedSites, adapter.id],
+    });
+    state.settings = next;
+    try {
+      chrome.storage.local.set({ settings: next });
+    } catch (e) {
+      /* extension reloaded */
+    }
   }
 
   function apply(auto) {
@@ -237,7 +294,7 @@
     }
     const before = currentText();
     if (before !== state.resultFor) {
-      state.message = 'Your text changed since this suggestion. Optimizing again…';
+      state.message = 'Your text changed since this suggestion. Optimizing again\u2026';
       render();
       runNow(true);
       return;
@@ -266,7 +323,14 @@
         state.lastAppliedText = currentText();
       }
       state.status = 'error';
-      state.message = 'This editor did not accept the change. Use "Copy optimized" and paste it yourself.';
+      if (auto) {
+        blockAutoOnThisSite();
+        state.message =
+          'This site’s editor did not accept an automatic change, so your text was kept as it was. ' +
+          'AquaGuard will use preview mode on this site (you can retry from the toolbar popup).';
+      } else {
+        state.message = 'This editor did not accept the change. Use "Copy optimized" and paste it yourself.';
+      }
       render();
       return;
     }
@@ -323,7 +387,10 @@
     state.undo = null;
     state.undoConfirm = false;
     state.undoneOriginal = after;
-    if (state.session) state.session.applied = false;
+    if (state.session) {
+      state.session.applied = false;
+      state.session.autoPaused = true; // don't re-shorten the draft the user just restored
+    }
     record({ type: 'undone', tokensSaved });
     // Show the suggestion again for the restored text (never auto-applied).
     state.result = null;
@@ -397,6 +464,8 @@
       undoConfirm: state.undoConfirm,
       message: state.message,
       messageTone: state.messageTone,
+      // Ask the one-time question only when there is a real suggestion to act on.
+      showConsent: Boolean(!state.settings.modeChosen && fresh && r.changed && state.status === 'suggestion'),
     };
   }
 
@@ -466,6 +535,13 @@
       case 'AG_UNDO':
         if (isActive()) undo();
         break;
+      case 'AG_SHOW_PANEL':
+        if (isActive() && state.field) {
+          ui.attach();
+          ui.setOpen(true);
+          layout();
+        }
+        break;
       default:
         return;
     }
@@ -485,6 +561,7 @@
       message: state.message,
       canApply: vm.canApply,
       canUndo: vm.canUndo,
+      autoBlocked: state.settings.autoBlockedSites.includes(adapter.id),
       result: r
         ? {
             changed: r.changed,

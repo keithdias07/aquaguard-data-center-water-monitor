@@ -234,6 +234,115 @@
     vocabulary: new Set(),
   };
 
+  const MAX_PASSES = 3;
+
+  // Lead-ins that may precede a request: "After that, could you ..." ->
+  // "After that, provide ...". The lead-in itself is always kept.
+  const LEAD_IN_RE = new RegExp(
+    '^((?:after\\s+that|then|next|finally|first(?:ly)?|second(?:ly)?|third(?:ly)?|lastly|now|and|' +
+      'for\\s+example|for\\s+instance|in\\s+the\\s+end|at\\s+the\\s+end(?:\\s+of\\s+[^,]{1,40})?|' +
+      'in\\s+(?:your|the)\\s+(?:answer|response|reply))\\s*,?\\s+)',
+    'i'
+  );
+  const GENERIC_LEAD_IN_RE = /^([^,.;:!?\uE000]{2,48},\s+)(?=\S)/;
+
+  function leadIn(text) {
+    const m = text.match(LEAD_IN_RE);
+    if (m) return m[1];
+    const g = text.match(GENERIC_LEAD_IN_RE);
+    if (g && g[1].trim().split(/\s+/).length <= 7) return g[1];
+    return null;
+  }
+
+  function applySentenceRule(run, rule, text, ctx) {
+    let out = rule.transform(text, ctx);
+    if (out === text && rule.prefixAware) {
+      const lead = leadIn(text);
+      if (lead) {
+        const rest = text.slice(lead.length);
+        const t = rule.transform(rest, ctx);
+        // After a lead-in the rewritten verb continues the sentence: lower-case it.
+        if (t !== rest && t !== '') out = lead + (/^I\b/.test(t) ? t : t.charAt(0).toLowerCase() + t.slice(1));
+      }
+    }
+    return tryRewrite(run, rule, text, out);
+  }
+
+  function sentencePass(run, work, spans, level) {
+    const lines = parseDocument(work);
+    const sentenceRules = rules.forLevel(rules.SENTENCE_RULES, level);
+    let isFirstSentence = true;
+    for (const line of lines) {
+      if (!line.sentences) continue;
+      for (const s of line.sentences) {
+        if (!s.text.trim()) continue;
+        const ctx = { isFirstSentence };
+        isFirstSentence = false;
+        for (const rule of sentenceRules) {
+          s.text = applySentenceRule(run, rule, s.text, ctx);
+          if (s.text === '') break;
+        }
+      }
+    }
+
+    // Repeats: a later sentence is dropped only when it says exactly what an
+    // earlier one already says (see rules.repeatKeys).
+    const seen = new Set();
+    for (const line of lines) {
+      if (!line.sentences) continue;
+      for (const s of line.sentences) {
+        if (!s.text) continue;
+        // Compare with protected spans restored, so two sentences quoting the
+        // same word ("passionate") are recognised as the same instruction.
+        const keys = rules.repeatKeys(restore(s.text, spans));
+        if (keys.length < 3) continue;
+        if (seen.has(keys.full)) {
+          s.text = tryRewrite(run, rules.duplicate, s.text, '');
+        } else {
+          seen.add(keys.full);
+          seen.add(keys.main);
+        }
+      }
+    }
+    return renderDocument(lines);
+  }
+
+  function textPass(run, work, level) {
+    for (const rule of rules.forLevel(rules.TEXT_RULES, level)) {
+      rule.pattern.lastIndex = 0;
+      work = work.replace(rule.pattern, (...args) => {
+        const match = args[0];
+        const groups = args.slice(1, -2).filter((g) => typeof g === 'string');
+        return tryRewrite(run, rule, match, rule.replace(match, ...groups));
+      });
+    }
+    return work;
+  }
+
+  // Context-aware: "... in simple language that a second-year computer
+  // engineering student like me can easily understand" repeats who the user
+  // is. It is removed ONLY if the same description already appears as
+  // "I am a <description>" elsewhere in the prompt.
+  const RESTATED_CONTEXT_RULE = {
+    id: 'restated-context',
+    category: 'repetition',
+    description: 'Removed a re-stated description of yourself that the prompt already gives',
+    vocabulary: '*',
+    allowDrop: [],
+  };
+  const RESTATED_RE =
+    /\s+(?:that|which)\s+(?:a|an)\s+([\p{L}\p{N}][\p{L}\p{N}\s-]{2,60}?)\s+like\s+me\s+(?:can|could|would|will)\s+(?:easily\s+|quickly\s+)?(?:understand|follow)\b/giu;
+
+  function dropRestatedContext(run, work) {
+    return work.replace(RESTATED_RE, (match, who, offset) => {
+      const rest = work.slice(0, offset) + work.slice(offset + match.length);
+      const phrase = who.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
+      const stated = new RegExp(`\\bI(?:'m|\u2019m|\\s+am)\\s+(?:a|an)\\s+${phrase}\\b`, 'i');
+      if (!stated.test(rest)) return match;
+      return tryRewrite(run, RESTATED_CONTEXT_RULE, match, '');
+    });
+  }
+
   function compressRules(text, options = {}) {
     const level = options.level === 'balanced' ? 'balanced' : 'conservative';
     const run = createRun(level);
@@ -259,49 +368,18 @@
       run.applied.push({ rule: WHITESPACE_RULE, before: '', after: '' });
     }
 
-    // Sentence rules + de-duplication operate on a parsed document.
-    const lines = parseDocument(work);
-    const sentenceRules = rules.forLevel(rules.SENTENCE_RULES, level);
-    let isFirstSentence = true;
-    for (const line of lines) {
-      if (!line.sentences) continue;
-      for (const s of line.sentences) {
-        if (!s.text.trim()) continue;
-        const ctx = { isFirstSentence };
-        isFirstSentence = false;
-        for (const rule of sentenceRules) {
-          s.text = tryRewrite(run, rule, s.text, rule.transform(s.text, ctx));
-          if (s.text === '') break;
-        }
-      }
+    // Multi-pass: one rewrite can expose another (e.g. "It should be noted
+    // that" -> "Note that" -> removed). Stops as soon as a pass changes nothing.
+    for (let pass = 0; pass < MAX_PASSES; pass++) {
+      const before = work;
+      work = sentencePass(run, work, spans, level);
+      work = dropRestatedContext(run, work);
+      work = textPass(run, work, level);
+      work = tidyWhitespace(work);
+      if (work === before) break;
     }
 
-    const seen = new Set();
-    for (const line of lines) {
-      if (!line.sentences) continue;
-      for (const s of line.sentences) {
-        if (!s.text) continue;
-        // Compare with protected spans restored, so two sentences quoting the
-        // same word ("passionate") are recognised as the same instruction.
-        const key = rules.repeatKey(restore(s.text, spans));
-        if (key.split(' ').length < 3) continue;
-        if (seen.has(key)) s.text = tryRewrite(run, rules.duplicate, s.text, '');
-        else seen.add(key);
-      }
-    }
-    work = renderDocument(lines);
-
-    // Phrase-level rules.
-    for (const rule of rules.forLevel(rules.TEXT_RULES, level)) {
-      rule.pattern.lastIndex = 0;
-      work = work.replace(rule.pattern, (...args) => {
-        const match = args[0];
-        const groups = args.slice(1, -2).filter((g) => typeof g === 'string');
-        return tryRewrite(run, rule, match, rule.replace(match, ...groups));
-      });
-    }
-
-    const maskedOutput = tidyWhitespace(work);
+    const maskedOutput = work;
 
     // Global check: original − everything rules were allowed to drop == output.
     const expected = features.diff(features.extract(maskedOriginal), run.allowance);

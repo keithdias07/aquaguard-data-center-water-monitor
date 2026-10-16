@@ -33,6 +33,15 @@
     $('debounceMs').value = settings.debounceMs;
     $('minPromptChars').value = settings.minPromptChars;
     $('level').value = settings.level;
+    $('autoMinTokensSaved').value = settings.autoMinTokensSaved;
+    $('autoMinReductionPct').value = settings.autoMinReductionPct;
+    const blocked = settings.autoBlockedSites
+      .map((id) => (AG.adapters.byId(id) || { name: id }).name)
+      .join(', ');
+    $('mode-choice-note').textContent =
+      (settings.modeChosen ? 'You have chosen a mode.' : 'You have not chosen yet: AquaGuard will ask on your first long prompt.') +
+      (blocked ? ` Automatic mode is paused (preview instead) on: ${blocked}.` : '');
+    $('reset-blocked').disabled = !blocked;
     $('collectStats').checked = settings.collectStats;
     renderSites();
     renderStats();
@@ -183,8 +192,12 @@
       $(id).addEventListener('change', (e) => save({ [id]: e.target.checked }));
     }
     for (const r of document.querySelectorAll('input[name="applyMode"]')) {
-      r.addEventListener('change', () => save({ applyMode: r.value }));
+      r.addEventListener('change', () => save({ applyMode: r.value, modeChosen: true }));
     }
+    $('autoMinTokensSaved').addEventListener('change', (e) => save({ autoMinTokensSaved: e.target.value }));
+    $('autoMinReductionPct').addEventListener('change', (e) => save({ autoMinReductionPct: e.target.value }));
+    $('reset-choice').addEventListener('click', () => save({ modeChosen: false, applyMode: 'manual' }));
+    $('reset-blocked').addEventListener('click', () => save({ autoBlockedSites: [] }));
     $('debounceMs').addEventListener('change', (e) => save({ debounceMs: e.target.value }));
     $('minPromptChars').addEventListener('change', (e) => save({ minPromptChars: e.target.value }));
     $('level').addEventListener('change', (e) => save({ level: e.target.value }));

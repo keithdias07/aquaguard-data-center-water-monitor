@@ -32,10 +32,23 @@
       </div>
       <fieldset class="field">
         <legend>When a shorter version is found</legend>
-        <label class="radio"><input type="radio" name="applyMode" value="manual"> <span><strong>Preview, then Apply</strong> (default). Text changes only when you click Apply.</span></label>
+        <label class="radio"><input type="radio" name="applyMode" value="autoApply"> <span><strong>Automatic.</strong> Replace my draft after I pause typing, when the saving is meaningful and my cursor is at the end. One-click Undo. Never sends.</span></label>
+        <label class="radio"><input type="radio" name="applyMode" value="manual"> <span><strong>Manual: preview, then Apply.</strong> Text changes only when I click Apply.</span></label>
         <label class="radio"><input type="radio" name="applyMode" value="previewOnly"> <span><strong>Preview only.</strong> Show estimates and the rewrite; never change my text.</span></label>
-        <label class="radio"><input type="radio" name="applyMode" value="autoApply"> <span><strong>Auto-apply after I pause.</strong> Replaces the text after the delay below. Always undoable, never sends.</span></label>
+        <p class="muted small" id="mode-choice-note"></p>
+        <div class="row wrap">
+          <button class="btn" id="reset-choice" type="button">Ask me again (reset the Automatic/Manual choice)</button>
+          <button class="btn" id="reset-blocked" type="button">Retry automatic mode on paused sites</button>
+        </div>
       </fieldset>
+      <div class="grid2">
+        <label class="field">Automatic mode: minimum tokens saved
+          <input type="number" id="autoMinTokensSaved" min="1" max="500" step="1">
+        </label>
+        <label class="field">Automatic mode: minimum reduction (%)
+          <input type="number" id="autoMinReductionPct" min="0" max="90" step="1">
+        </label>
+      </div>
       <div class="grid2">
         <label class="field">Delay after typing stops (ms)
           <input type="number" id="debounceMs" min="300" max="3000" step="50">
@@ -45,8 +58,8 @@
         </label>
         <label class="field">Compression level
           <select id="level">
-            <option value="conservative">Conservative (recommended)</option>
-            <option value="balanced">Balanced (also removes openers like “So,”)</option>
+            <option value="balanced">Balanced (recommended)</option>
+            <option value="conservative">Conservative (fewer rule types)</option>
           </select>
         </label>
       </div>

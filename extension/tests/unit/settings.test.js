@@ -29,7 +29,7 @@ test('sanitizeSettings clamps and rejects invalid values', () => {
   assert.equal(s.applyMode, 'manual');
   assert.equal(s.debounceMs, 300);
   assert.equal(s.minPromptChars, 2000);
-  assert.equal(s.level, 'conservative');
+  assert.equal(s.level, 'balanced'); // invalid value falls back to the default
   assert.deepEqual(s.disabledSites, ['claude']);
   assert.equal(s.impact.mode, 'illustrative');
   assert.equal(s.impact.energyWhPer1kTokensLow, null);

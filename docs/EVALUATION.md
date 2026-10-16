@@ -18,22 +18,38 @@ How the AquaGuard compressor is evaluated, what the numbers mean, and what they 
 
 ## Dataset
 
-45 hand-written **synthetic** prompts (none collected from users) in 9 categories: simple questions, coding, long technical prompts, multi-step instructions, numbers and units, constraints and negations, structured JSON/Markdown output, verbose prompts, and prompts that must not be compressed (quoted text to translate, text to proofread, tables, near-duplicate but different instructions, non-English text, capability questions such as "Can you remember previous conversations?").
+52 hand-written **synthetic** prompts (none collected from users) in 10 categories: simple questions, coding, long technical prompts, multi-step instructions, numbers and units, constraints and negations, structured JSON/Markdown output, verbose prompts, a long regression prompt, and prompts that must not be compressed (quoted text to translate, text to proofread, tables, near-duplicate but different instructions, non-English text, capability questions such as "Can you remember previous conversations?", a re-stated audience with no earlier self-description).
 
-## Results (engine 1.0.0, 2026-10-17)
+## Results (engine 1.0.0 + multi-pass rules, extension 0.2.0, 2026-10-17)
 
-| Metric | Conservative | Balanced |
+| Metric | Conservative | Balanced (default) |
 |---|---|---|
-| Prompts compressed | 25 / 45 | 25 / 45 |
+| Prompts compressed | 31 / 52 | 31 / 52 |
 | Decision accuracy | 100% | 100% |
 | Required phrases preserved | 100% | 100% |
 | Numbers / negations / constraints preserved | 100% | 100% |
-| False compressions | 0 / 15 | 0 / 15 |
-| Mean reduction, compressed prompts (o200k) | 20.6% | 21.0% |
-| Total reduction across dataset (o200k) | 15.8% | 16.1% |
-| Median latency | ~0.3 ms | ~0.25 ms |
+| False compressions | 0 / 17 | 0 / 17 |
+| Mean reduction, compressed prompts (o200k) | 22.8% | 23.1% |
+| Total reduction across dataset (o200k) | 18.9% | 19.1% |
+| Median latency | ~0.27 ms | ~0.27 ms |
 
-Heuristic tokenizer vs `o200k_base`: **4.3%** mean absolute error, **+3.2%** mean signed error (slight overestimate), within ±10% for 84% of texts. A separate check (see `tokenizer.js` comments) found about 9% error on source code and up to about 30% **under**counting for rare, very long words.
+Previous version, for comparison (45 prompts): 20.6% mean reduction on compressed prompts, 15.8% total.
+
+### Regression prompt
+
+`eval/regression/ml_learning_prompt.txt` was written from the requirements of the user's original test prompt. The exact original text was not available, so this is a reconstruction in the same verbose style; swap in the original to re-measure.
+
+| | Original | Optimized | Saved | Reduction |
+|---|---|---|---|---|
+| Estimated tokens (heuristic) | 232 | 152 | 80 | 34.5% |
+| Exact `o200k_base` | 222 | 144 | 78 | 35.1% |
+| Before this change (heuristic) | 232 | 201 | 31 | 13.4% |
+
+Requirements checked by `tests/unit/regression-and-rules-v2.test.js`, all preserved: exactly three real-world examples; healthcare; cybersecurity; exactly five numbered Python-learning steps; no advanced mathematical equations; at most 500 words; small Python code example at the end; beginner-friendly language; second-year computer engineering student; explain what machine learning is. The repeated "do not use advanced math equations" now appears once.
+
+What changed in the engine: rules now also apply after a lead-in ("After that, could you also…"); additive transitions ("Also,") and "Keep in mind that" are dropped; "I would really like it if" becomes "Ideally,"; "explain to me" / "provide me with" are shortened; empty intensifiers ("actually is") are removed; reworded repeats are removed only when they normalise to *exactly* the same requirement (never a broader or narrower one); a re-stated self-description is removed only when the prompt already says "I am a …"; and the pipeline runs up to three passes until nothing changes. Every rewrite still goes through the same meaning guard.
+
+Heuristic tokenizer vs `o200k_base`: **3.8%** mean absolute error, **+2.8%** mean signed error (slight overestimate), within ±10% for 87% of texts. A separate check (see `tokenizer.js` comments) found about 9% error on source code and up to about 30% **under**counting for rare, very long words.
 
 The current numbers are in `data/extension/prompt_eval_results.json`, which the dashboard displays.
 

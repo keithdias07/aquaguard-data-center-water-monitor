@@ -107,12 +107,14 @@ flowchart LR
 
 ## Features
 
-- **Preview-first.** After you pause typing (default 800 ms), a pill next to the prompt box shows the saving, for example `−18% · 12 tokens`. Click it to see a red/green diff, token estimates, latency and a plain-language list of what changed.
-- **Apply / Undo / Optimize now / Copy optimized** in the page overlay and in the toolbar popup.
-- **Three modes:** *Preview, then Apply* (default); *Preview only* (never touches your text); *Auto-apply after pause* (opt-in, always undoable).
+- **One-time choice.** The first time AquaGuard finds a shorter version, a small card asks **Automatic** or **Manual**. Your answer is saved in Chrome storage and never asked again unless you reset it.
+- **Automatic mode.** After you pause typing (default 1 s), your draft is replaced with the shorter version. A compact indicator shows `−35% · 78 tokens saved` next to a one-click **Undo** that restores your exact original. There's no popup, no diff panel, and no Apply click.
+- **Manual mode.** A pill shows the saving. Click it for a red/green diff, token estimates, latency and a plain-language list of what changed, then **Apply** when you want.
+- **Apply / Undo / Optimize now / Copy optimized** in the page overlay and in the toolbar popup. The popup can also open the detailed comparison on the page.
+- **Modes:** *Automatic*, *Manual: preview, then Apply*, and *Preview only* (never touches your text).
 - **Never sends.** No Enter key events and no clicks on the site's send button. Covered by automated tests.
 - **Safe editing.** No optimization while you type or during IME composition, and none on text the extension just wrote itself (no input loops). Changes made by the site (for example the box being cleared after sending) are detected. Writes go through the browser's editing pipeline, so React, ProseMirror and Quill editors stay in sync.
-- **Conservative by default**, with an optional *Balanced* level.
+- **Multi-pass, context-aware compression** (default *Balanced* level; *Conservative* uses fewer rule types). Rules shorten requests that follow a lead-in ("After that, could you also…" → "After that, provide…"), drop additive transitions ("Also,") and redundant intros ("Keep in mind that"), remove reworded repeats of a requirement only when they say exactly the same thing, and remove a re-stated description of yourself only when the prompt already states it. Order words ("First", "Then", "Finally") are never removed.
 - **Keeps the original** when no safe, shorter rewrite exists, and says why ("Already concise", "Validation failed", …).
 - **Per-site disable**, global on/off, configurable delay and minimum prompt length.
 - **Opt-in aggregate statistics** (counts only), JSON export, one-click reset.
@@ -143,12 +145,29 @@ To install the packaged ZIP instead, build it (see [Packaging](#packaging-for-th
 
 ## Using the extension
 
-1. Type a prompt on a supported site. When you pause, the pill above the prompt box shows the estimated saving, or "Already concise".
-2. Click the pill to review the diff and the list of changes.
-3. Click **Apply optimization**. Your text is replaced; **nothing is sent**. Read it and send it yourself.
-4. Changed your mind? Click **Undo / restore original** (or press Ctrl+Z in the box).
-5. Use the toolbar popup to switch modes, turn AquaGuard off everywhere, or turn it off for the current site.
-6. Open **Settings & statistics** for all options, the Try-it sandbox, opt-in statistics, export and reset.
+**First prompt:** type a prompt of 40+ characters on a supported site and pause. If a shorter version exists, a small card asks *"Shorten prompts automatically?"*
+- **Automatic:** your current draft is shortened right away, and future drafts are shortened after each typing pause.
+- **Manual:** you keep the review-and-Apply workflow.
+
+You can also answer this from the toolbar popup.
+
+**Automatic mode.** Type normally and pause. When the saving is worth it, your draft is replaced and the indicator shows the tokens saved. Click **Undo** to restore the exact original; after an Undo, that draft is left alone. **Nothing is ever sent.** You read the result and press send yourself.
+
+AquaGuard deliberately does *not* replace your text, and leaves the suggestion in the pill for a manual Apply, when:
+- you're still typing, or an IME composition (e.g. Japanese, Chinese) is active;
+- your cursor is in the middle of the text, or text is selected;
+- the saving is below the threshold (default: at least 3 tokens and 3%);
+- the prompt box isn't focused;
+- the site's editor rejected an earlier automatic change. Your text is kept, the site switches to preview mode, and the popup offers **Retry**.
+
+**Manual mode.** Click the pill to review the diff, then **Apply optimization**. **Undo / restore original** (or Ctrl+Z in the box) reverts it.
+
+**Change your mind:**
+- Toolbar popup → **Mode** (Automatic / Manual / Preview only), or switch AquaGuard off everywhere or on the current site.
+- Settings → **Ask me again** resets the one-time choice.
+- Settings → **Reset all settings and data** clears everything.
+
+**Settings & statistics** has every option (delay, minimum length, automatic-mode thresholds, compression level), the Try-it sandbox, opt-in statistics, export and reset.
 
 ## Run the Streamlit dashboard
 
@@ -228,19 +247,27 @@ No `tabs`, `history`, `scripting`, `<all_urls>` or remote-code permissions are r
 
 ## Evaluation methodology and results
 
-Full details: [docs/EVALUATION.md](docs/EVALUATION.md). In short, `npm run eval` runs 45 hand-written synthetic prompts in 9 categories (simple questions, coding, long technical prompts, multi-step instructions, numbers and units, constraints and negations, structured JSON/Markdown output, verbose prompts, and **prompts that must not be compressed**) and measures:
+Full details: [docs/EVALUATION.md](docs/EVALUATION.md). In short, `npm run eval` runs 52 hand-written synthetic prompts in 10 categories (simple questions, coding, long technical prompts, multi-step instructions, numbers and units, constraints and negations, structured JSON/Markdown output, verbose prompts, a long regression prompt, and **prompts that must not be compressed**) and measures:
 
-| Check | Conservative level |
+| Check | Balanced level (default) |
 |---|---|
-| Correct compress / don't-compress decision | 100% (45/45) |
+| Correct compress / don't-compress decision | 100% (52/52) |
 | Required phrases preserved (`mustPreserve`) | 100% |
 | Every number, negation and constraint term preserved | 100% |
-| Should-not-compress prompts that were changed | 0 of 15 |
-| Prompts compressed | 25 of 45 |
-| Token reduction, compressed prompts only (mean, exact `o200k_base`) | 20.6% |
-| Total token reduction over the whole dataset (exact `o200k_base`) | 15.8% |
+| Should-not-compress prompts that were changed | 0 of 17 |
+| Token reduction, compressed prompts only (mean, exact `o200k_base`) | 23.1% |
+| Total token reduction over the whole dataset (exact `o200k_base`) | 19.1% |
 | Median compression latency | ≈0.3 ms |
-| Heuristic tokenizer vs `o200k_base` | 4.3% mean absolute error |
+| Heuristic tokenizer vs `o200k_base` | 3.8% mean absolute error |
+
+**Regression prompt** (`extension/eval/regression/ml_learning_prompt.txt`): a long, polite request for a beginner ML explanation with exactly three examples (incl. healthcare and cybersecurity), exactly five numbered Python steps, no advanced equations, ≤500 words, a small Python example at the end, and beginner-friendly language for a second-year computer engineering student.
+
+| | Original | Optimized | Saved | Reduction |
+|---|---|---|---|---|
+| Estimated tokens (heuristic) | 232 | 152 | 80 | 34.5% |
+| Exact `o200k_base` tokens | 222 | 144 | 78 | 35.1% |
+
+All 10 requirements are checked by a unit test and survive. Latency is about 3 ms (median); the first call in a fresh page is about 40 ms while the JavaScript engine warms up.
 
 **Read these numbers carefully:**
 
@@ -257,6 +284,8 @@ Full details: [docs/EVALUATION.md](docs/EVALUATION.md). In short, `npm run eval`
 - **The water dashboard data is simulated** and is never presented as savings from the extension.
 - **Rule-based, English-focused.** Other languages are left alone (no rule matches). Text the user wants transformed after a colon ("Proofread: …") is protected, but payloads introduced without a colon may still be compressed.
 - **Site adapters can break** when a site changes its markup. The extension then does nothing on that site; it does not fail loudly.
+- **Automatic replacement is tested on local fixtures, not on every live site.** It passes on a textarea, a React-controlled textarea, ProseMirror (the editor ChatGPT and Claude use) and Quill (Gemini). It was not tested on the signed-in ChatGPT, Claude or Gemini pages. If a live editor rejects the change, AquaGuard keeps your original text and switches that site to preview mode.
+- **Rich formatting.** Automatic and manual replacement write plain text. In rich editors, inline formatting typed into the box (bold, lists created by the editor) may be flattened. Blank lines between paragraphs can be merged by ProseMirror.
 
 ## Packaging for the Chrome Web Store
 
@@ -270,7 +299,11 @@ Before a manual Web Store submission you will still need: a developer account, s
 
 ## Screenshots
 
-| In-page review panel | Toolbar popup |
+| One-time question | Automatic mode after a pause |
+|---|---|
+| ![Small card asking Automatic or Manual](docs/screenshots/consent-question.png) | ![Compact indicator with tokens saved and an Undo button](docs/screenshots/auto-applied.png) |
+
+| In-page review panel (manual mode) | Toolbar popup |
 |---|---|
 | ![Overlay showing the diff, token estimates and Apply/Undo](docs/screenshots/overlay-preview.png) | ![Popup with on/off, mode, per-site toggle and estimates](docs/screenshots/popup.png) |
 

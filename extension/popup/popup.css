@@ -7,3 +7,6 @@ body { width: 360px; }
 footer { padding: 0 2px; }
 label { cursor: pointer; }
 #m-message:empty { display: none; }
+.consent { border-color: var(--accent); }
+.warn-text { color: var(--warn); }
+#blocked-row .btn { flex: none; }

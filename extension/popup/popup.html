@@ -20,6 +20,15 @@
       <span id="status-badge" class="badge off">Off</span>
     </header>
 
+    <section class="card stack consent" id="consent-card" hidden>
+      <strong>Shorten prompts automatically?</strong>
+      <p class="muted small">Automatic: AquaGuard replaces your draft with a shorter version after you pause typing. It never sends anything; Undo is one click. Manual: you review and click Apply each time.</p>
+      <div class="actions">
+        <button class="btn primary" id="choose-auto" type="button">Automatic</button>
+        <button class="btn" id="choose-manual" type="button">Manual</button>
+      </div>
+    </section>
+
     <section class="card stack">
       <div class="row">
         <label for="toggle-enabled"><strong>Optimization</strong><br><span class="muted small" id="enabled-help">Enabled on supported sites</span></label>
@@ -28,9 +37,9 @@
       <div class="row">
         <label for="apply-mode"><strong>Mode</strong></label>
         <select id="apply-mode" aria-describedby="mode-help">
-          <option value="manual">Preview, then Apply</option>
+          <option value="autoApply">Automatic (after you pause)</option>
+          <option value="manual">Manual: preview, then Apply</option>
           <option value="previewOnly">Preview only</option>
-          <option value="autoApply">Auto-apply after pause</option>
         </select>
       </div>
       <p id="mode-help" class="muted small"></p>
@@ -43,6 +52,10 @@
           <div class="muted small" id="site-detail">Checking…</div>
         </div>
         <span class="switch" id="site-switch-wrap" hidden><input type="checkbox" id="toggle-site" role="switch" aria-label="Enable on this site"><span class="track"></span></span>
+      </div>
+      <div class="row" id="blocked-row" hidden>
+        <span class="small warn-text">Automatic mode is paused here: this site's editor did not accept a change, so AquaGuard uses preview mode.</span>
+        <button class="btn" id="retry-auto" type="button">Retry</button>
       </div>
     </section>
 
@@ -60,6 +73,7 @@
         <button class="btn primary" id="btn-apply" type="button">Apply</button>
         <button class="btn" id="btn-undo" type="button">Undo</button>
       </div>
+      <button class="btn" id="btn-details" type="button">Show original vs optimized on the page</button>
     </section>
 
     <footer class="row small">
