@@ -13,7 +13,8 @@
   const MODE_HELP = {
     manual: 'Shows a suggestion after you pause typing. Your text changes only when you click Apply.',
     previewOnly: 'Shows token estimates and the suggested rewrite but never changes your text.',
-    autoApply: 'Replaces the text after you pause typing. Always undoable. Never sends the prompt.',
+    autoApply:
+      'Replaces your draft with a shorter version after you pause typing, when the saving is meaningful. One-click Undo. Never sends the prompt.',
   };
 
   let settings = AG.settings.sanitizeSettings({});
@@ -39,6 +40,7 @@
     $('apply-mode').value = settings.applyMode;
     $('mode-help').textContent = MODE_HELP[settings.applyMode];
     $('enabled-help').textContent = settings.enabled ? 'Enabled on supported sites' : 'Disabled everywhere';
+    $('consent-card').hidden = settings.modeChosen;
     renderBadge();
   }
 
@@ -103,6 +105,7 @@
       (siteEnabled ? '' : ' · disabled on this site') +
       (state.fieldFound ? '' : ' · prompt box not found yet');
     siteSwitch.hidden = false;
+    $('blocked-row').hidden = !settings.autoBlockedSites.includes(state.site.id) || settings.applyMode !== 'autoApply';
     $('toggle-site').checked = siteEnabled;
     $('toggle-site').disabled = !settings.enabled;
 
@@ -120,6 +123,7 @@
     $('btn-apply').disabled = !state.canApply;
     $('btn-undo').disabled = !state.canUndo;
     $('btn-optimize').disabled = !state.fieldFound;
+    $('btn-details').disabled = !r;
   }
 
   async function refresh() {
@@ -138,7 +142,18 @@
     await refresh();
 
     $('toggle-enabled').addEventListener('change', (e) => saveSettings({ enabled: e.target.checked }));
-    $('apply-mode').addEventListener('change', (e) => saveSettings({ applyMode: e.target.value }));
+    // Picking a mode here also counts as answering the one-time question.
+    $('apply-mode').addEventListener('change', (e) => saveSettings({ applyMode: e.target.value, modeChosen: true }));
+    $('choose-auto').addEventListener('click', () => saveSettings(AG.settings.chooseMode(settings, 'auto')));
+    $('choose-manual').addEventListener('click', () => saveSettings(AG.settings.chooseMode(settings, 'manual')));
+    $('retry-auto').addEventListener('click', () => {
+      if (!lastState || !lastState.supported) return;
+      saveSettings({ autoBlockedSites: settings.autoBlockedSites.filter((id) => id !== lastState.site.id) });
+    });
+    $('btn-details').addEventListener('click', async () => {
+      await send('AG_SHOW_PANEL');
+      if (!new URLSearchParams(location.search).get('tab')) window.close();
+    });
     $('toggle-site').addEventListener('change', (e) => {
       if (!lastState || !lastState.supported) return;
       const id = lastState.site.id;

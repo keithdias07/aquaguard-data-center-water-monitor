@@ -132,7 +132,7 @@ test('preview-only mode never modifies the text', async () => {
 });
 
 test('auto-apply (opt-in) replaces after the pause, never sends, and Undo is respected', async () => {
-  await h.setSettings(ctx, { applyMode: 'autoApply' });
+  await h.setSettings(ctx, { applyMode: 'autoApply', modeChosen: true });
   const page = await h.openFixture(ctx, 'textarea');
   await h.typeInto(page, VERBOSE);
   await h.waitForStatus(page, 'applied', 5000);
@@ -176,7 +176,7 @@ async function openPopupFor(page) {
   });
   const popup = await ctx.browser.newPage();
   await popup.goto(`chrome-extension://${ctx.extensionId}/popup/popup.html?tab=${tabId}`);
-  await popup.waitForFunction(() => document.getElementById('site-detail').textContent !== 'Checking…');
+  await popup.waitForFunction(() => document.getElementById('site-detail').textContent !== 'Checking\u2026');
   return popup;
 }
 

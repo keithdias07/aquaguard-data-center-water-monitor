@@ -13,7 +13,16 @@
     :host { all: initial; }
     * { box-sizing: border-box; }
     .wrap { position: fixed; z-index: 2147483646; font: 13px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #e2f1ff; }
-    .pill { position: fixed; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px 0 8px;
+    .bar { position: fixed; display: flex; align-items: center; gap: 6px; }
+    .undo { height: 26px; padding: 0 10px; border-radius: 13px; border: 1px solid #34d399; background: #0b1a2e; color: #d1fae5;
+      font: 600 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
+    .undo:hover { background: #12304f; }
+    .undo[hidden], .consent[hidden] { display: none; }
+    .consent { position: fixed; display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 12px;
+      background: #0b1a2e; border: 1px solid #22d3ee; box-shadow: 0 12px 40px rgba(0,0,0,.5); width: 340px; }
+    .consent strong { color: #ecfeff; font-size: 13px; }
+    .consent p { margin: 0; font-size: 12px; color: #b9d7ee; }
+    .pill { position: static; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px 0 8px;
       border-radius: 13px; border: 1px solid #1f4a72; background: #0b1a2e; color: #cfeaff; cursor: pointer;
       font: 600 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.35); white-space: nowrap; }
     .pill:hover { border-color: #22d3ee; }
@@ -126,7 +135,32 @@
     const actions = el('div', { class: 'actions' }, [btnApply, btnUndo, btnOptimize, btnCopy]);
 
     panel.append(head, metrics, estimateNote, diffLabel, diffBox, chipsLabel, chips, msg, actions);
-    wrap.append(pill, panel);
+
+    // Compact bar: [Undo] [status pill]. Undo is one click and keeps the caret in the prompt box.
+    const undoChip = el('button', {
+      class: 'undo',
+      type: 'button',
+      text: 'Undo',
+      'aria-label': 'Undo optimization and restore your original prompt',
+      hidden: '',
+    });
+    const bar = el('div', { class: 'bar' }, [undoChip, pill]);
+
+    // One-time question: automatic or manual. Shown once, small, never steals focus.
+    const consent = el('div', { class: 'consent', role: 'dialog', 'aria-label': 'Choose how AquaGuard works', hidden: '' });
+    const consentAuto = el('button', { class: 'btn primary', type: 'button', text: 'Automatic' });
+    const consentManual = el('button', { class: 'btn', type: 'button', text: 'Manual (review first)' });
+    consent.append(
+      el('strong', { text: 'Shorten prompts automatically?' }),
+      el('p', {
+        text:
+          'AquaGuard can replace your draft with a shorter version after you pause typing. ' +
+          'It never sends anything, and Undo is one click away. You can change this anytime in the toolbar popup.',
+      }),
+      el('div', { class: 'actions' }, [consentAuto, consentManual])
+    );
+
+    wrap.append(bar, consent, panel);
     shadow.appendChild(wrap);
 
     // Keep the caret in the prompt box when clicking our controls with a mouse.
@@ -159,6 +193,9 @@
     close.addEventListener('click', () => setOpen(false));
     btnApply.addEventListener('click', () => handlers.onApply());
     btnUndo.addEventListener('click', () => handlers.onUndo());
+    undoChip.addEventListener('click', () => handlers.onUndo());
+    consentAuto.addEventListener('click', () => handlers.onChooseMode('auto'));
+    consentManual.addEventListener('click', () => handlers.onChooseMode('manual'));
     btnOptimize.addEventListener('click', () => handlers.onOptimize());
     btnCopy.addEventListener('click', async () => {
       const text = lastView && lastView.result && lastView.result.optimized;
@@ -181,13 +218,15 @@
       const r = view.result;
       switch (view.status) {
         case 'running':
-          return 'Optimizing…';
+          return 'Optimizing\u2026';
         case 'suggestion':
           return `−${fmtPct(r.reductionPct)} · ${fmtInt(r.tokensSaved)} tokens`;
         case 'unchanged':
           return 'Already concise';
         case 'applied':
-          return 'Applied · Undo available';
+          return r && r.tokensSaved
+            ? `−${fmtPct(r.reductionPct)} · ${fmtInt(r.tokensSaved)} tokens saved`
+            : 'Optimized';
         case 'manual':
           return 'Optimize';
         case 'short':
@@ -246,7 +285,7 @@
       const list = (r && r.transformations) || [];
       chipsLabel.hidden = list.length === 0;
       for (const t of list) {
-        chips.appendChild(el('span', { class: 'chip', title: t.examples && t.examples[0] ? `e.g. “${t.examples[0].before}”` : '', text: `${t.description}${t.count > 1 ? ` ×${t.count}` : ''}` }));
+        chips.appendChild(el('span', { class: 'chip', title: t.examples && t.examples[0] ? `e.g. \u201C${t.examples[0].before}\u201D` : '', text: `${t.description}${t.count > 1 ? ` ×${t.count}` : ''}` }));
       }
 
       let message = view.message || '';
@@ -258,6 +297,8 @@
       btnUndo.disabled = !view.canUndo;
       btnUndo.textContent = view.undoConfirm ? 'Click again to discard your edits' : 'Undo / restore original';
       btnCopy.disabled = !(r && r.changed);
+      undoChip.hidden = !view.canUndo || open;
+      consent.hidden = !view.showConsent || open;
     }
 
     function position(field) {
@@ -271,21 +312,24 @@
       let pillTop = rect.top - pillH - 6;
       if (pillTop < 4) pillTop = Math.min(rect.bottom + 6, vh - pillH - 4);
       const right = Math.max(4, vw - rect.right);
-      pill.style.top = `${Math.round(pillTop)}px`;
-      pill.style.right = `${Math.round(right)}px`;
+      bar.style.top = `${Math.round(pillTop)}px`;
+      bar.style.right = `${Math.round(right)}px`;
 
       const width = Math.min(560, Math.max(320, rect.width), vw - 8);
       panel.style.width = `${Math.round(width)}px`;
       panel.style.right = `${Math.round(Math.min(right, vw - width - 4))}px`;
+      consent.style.right = `${Math.round(Math.min(right, vw - 344))}px`;
       const above = pillTop > vh * 0.45;
-      if (above) {
-        panel.style.top = '';
-        panel.style.bottom = `${Math.round(vh - pillTop + 6)}px`;
-        panel.style.maxHeight = `${Math.max(160, Math.round(pillTop - 12))}px`;
-      } else {
-        panel.style.bottom = '';
-        panel.style.top = `${Math.round(pillTop + pillH + 6)}px`;
-        panel.style.maxHeight = `${Math.max(160, Math.round(vh - pillTop - pillH - 18))}px`;
+      for (const box of [panel, consent]) {
+        if (above) {
+          box.style.top = '';
+          box.style.bottom = `${Math.round(vh - pillTop + 6)}px`;
+          box.style.maxHeight = `${Math.max(160, Math.round(pillTop - 12))}px`;
+        } else {
+          box.style.bottom = '';
+          box.style.top = `${Math.round(pillTop + pillH + 6)}px`;
+          box.style.maxHeight = `${Math.max(160, Math.round(vh - pillTop - pillH - 18))}px`;
+        }
       }
     }
 

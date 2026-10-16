@@ -21,9 +21,23 @@ const PROMPT =
     await page.setViewport({ width: 1100, height: 760, deviceScaleFactor: 2 });
     await h.typeInto(page, PROMPT, 1);
     await h.waitForStatus(page, 'suggestion', 5000);
+    await h.sleep(300);
+    await page.screenshot({ path: path.join(OUT, 'consent-question.png') }); // first-use question
     await page.evaluate(() => document.getElementById('aquaguard-prompt-optimizer').shadowRoot.querySelector('.pill').click());
     await h.sleep(400);
     await page.screenshot({ path: path.join(OUT, 'overlay-preview.png') });
+
+    // Automatic mode: compact indicator + Undo after the pause.
+    await h.setSettings(ctx, { applyMode: 'autoApply', modeChosen: true });
+    const auto = await h.openFixture(ctx, 'pm');
+    await auto.setViewport({ width: 1100, height: 760, deviceScaleFactor: 2 });
+    await h.typeInto(auto, PROMPT, 1);
+    await h.waitForStatus(auto, 'applied', 5000);
+    await h.sleep(300);
+    await auto.screenshot({ path: path.join(OUT, 'auto-applied.png'), clip: { x: 0, y: 520, width: 1100, height: 240 } });
+    await auto.close();
+    await h.setSettings(ctx, { applyMode: 'manual', modeChosen: true });
+    await page.bringToFront();
 
     const tabId = await ctx.worker.evaluate(async () => (await chrome.tabs.query({ active: true, lastFocusedWindow: true }))[0].id);
     const popup = await ctx.browser.newPage();

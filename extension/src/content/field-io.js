@@ -114,11 +114,33 @@
     return sameText(read(el), text);
   }
 
+  /**
+   * True when the user's cursor is a plain caret (no selection) at the end of
+   * the prompt, ignoring trailing whitespace. Automatic mode only replaces text
+   * in that state, so it never yanks the cursor away from a mid-text edit or
+   * replaces something the user has selected.
+   */
+  function caretAtEnd(el) {
+    if (!el) return false;
+    if (isTextControl(el)) {
+      if (el.selectionStart !== el.selectionEnd) return false;
+      return el.value.slice(el.selectionEnd).trim() === '';
+    }
+    const sel = el.ownerDocument.getSelection();
+    if (!sel || sel.rangeCount === 0 || !sel.isCollapsed) return false;
+    const caret = sel.getRangeAt(0);
+    if (!el.contains(caret.endContainer)) return false;
+    const after = el.ownerDocument.createRange();
+    after.selectNodeContents(el);
+    after.setStart(caret.endContainer, caret.endOffset);
+    return after.toString().trim() === '';
+  }
+
   /** Replace the whole field content. Returns true if the field now holds `text`. */
   function write(el, text) {
     if (!el || !el.isConnected) return false;
     return isTextControl(el) ? writeTextControl(el, text) : writeEditable(el, text);
   }
 
-  return { read, write, sameText, isTextControl, readEditable };
+  return { read, write, sameText, isTextControl, readEditable, caretAtEnd };
 });
