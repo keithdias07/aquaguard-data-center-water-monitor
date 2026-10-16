@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AquaGuard test chat</title>
+  <link rel="stylesheet" href="/node_modules/quill/dist/quill.core.css">
+  <style>
+    body { font: 15px system-ui, sans-serif; margin: 0; padding: 40px; min-height: 900px; }
+    form { position: fixed; left: 40px; right: 40px; bottom: 40px; }
+    .field { border: 1px solid #999; border-radius: 8px; padding: 10px; min-height: 60px; width: 100%; box-sizing: border-box; white-space: pre-wrap; }
+    textarea.field { font: inherit; }
+    .ProseMirror { outline: none; }
+    .ProseMirror p, .ql-editor p { margin: 0; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "orderedmap": "/node_modules/orderedmap/dist/index.js",
+      "prosemirror-model": "/node_modules/prosemirror-model/dist/index.js",
+      "prosemirror-state": "/node_modules/prosemirror-state/dist/index.js",
+      "prosemirror-transform": "/node_modules/prosemirror-transform/dist/index.js",
+      "prosemirror-view": "/node_modules/prosemirror-view/dist/index.js",
+      "prosemirror-schema-basic": "/node_modules/prosemirror-schema-basic/dist/index.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <h1>Fixture chat</h1>
+  <p>Simulates an AI chat input. Pressing Enter or submitting the form is counted, never performed.</p>
+  <button id="simulate-send" type="button">Simulate site clearing the box</button>
+  <form id="chat" action="/should-never-be-submitted" method="post">
+    <div id="mount"></div>
+    <button type="submit" id="send">Send</button>
+  </form>
+
+  <script>
+    window.__submits = 0;
+    window.__enterKeys = 0;
+    window.__keydowns = 0;
+    document.getElementById('chat').addEventListener('submit', (e) => { e.preventDefault(); window.__submits++; });
+    document.getElementById('send').addEventListener('click', () => { window.__sendClicks = (window.__sendClicks || 0) + 1; });
+    document.addEventListener('keydown', (e) => { window.__keydowns++; if (e.key === 'Enter') window.__enterKeys++; }, true);
+    const editor = new URLSearchParams(location.search).get('editor') || 'textarea';
+    const mount = document.getElementById('mount');
+    window.__editorKind = editor;
+    if (editor === 'textarea') {
+      mount.innerHTML = '<textarea id="field" class="field" data-aquaguard-field rows="4" aria-label="Prompt"></textarea>';
+    } else if (editor === 'ce') {
+      mount.innerHTML = '<div id="field" class="field" contenteditable="true" data-aquaguard-field role="textbox" aria-label="Prompt"></div>';
+    }
+    window.__getText = () => {
+      const f = document.getElementById('field');
+      if (editor === 'textarea') return f.value;
+      if (editor === 'pm') return window.__pmText();
+      if (editor === 'quill') return window.__quill.getText().replace(/\n$/, '');
+      return f.innerText.replace(/\n$/, '');
+    };
+    document.getElementById('simulate-send').addEventListener('click', () => {
+      // Clear the box the way a site does after sending: no input event.
+      if (editor === 'textarea') document.getElementById('field').value = '';
+      else if (editor === 'pm') window.__pmClear();
+      else if (editor === 'quill') window.__quill.setText('', 'silent');
+      else document.getElementById('field').textContent = '';
+    });
+  </script>
+
+  <script type="module">
+    const editor = window.__editorKind;
+    if (editor === 'pm') {
+      const { EditorState } = await import('prosemirror-state');
+      const { EditorView } = await import('prosemirror-view');
+      const { schema } = await import('prosemirror-schema-basic');
+      const host = document.createElement('div');
+      host.id = 'field-host';
+      host.className = 'field';
+      document.getElementById('mount').appendChild(host);
+      const view = new EditorView(host, { state: EditorState.create({ schema }) });
+      view.dom.id = 'field';
+      view.dom.setAttribute('data-aquaguard-field', '');
+      window.__pmView = view;
+      // Text according to ProseMirror's own document model, one line per block.
+      window.__pmText = () => {
+        const lines = [];
+        view.state.doc.forEach((node) => lines.push(node.textContent));
+        return lines.join('\n');
+      };
+      window.__pmClear = () => {
+        const tr = view.state.tr.delete(0, view.state.doc.content.size);
+        view.dispatch(tr);
+      };
+      window.__ready = true;
+    } else if (editor === 'quill') {
+      await new Promise((resolve) => {
+        const s = document.createElement('script');
+        s.src = '/node_modules/quill/dist/quill.js';
+        s.onload = resolve;
+        document.head.appendChild(s);
+      });
+      const host = document.createElement('div');
+      host.id = 'field-host';
+      document.getElementById('mount').appendChild(host);
+      const quill = new window.Quill(host, { theme: null, modules: { toolbar: false } });
+      quill.root.id = 'field';
+      quill.root.setAttribute('data-aquaguard-field', '');
+      window.__quill = quill;
+      window.__ready = true;
+    } else {
+      window.__ready = true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AquaGuard Settings</title>
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="../icons/icon48.png" alt="">
+      <div>
+        <div class="name">AquaGuard Prompt Optimizer</div>
+        <div class="sub">Settings, privacy and usage statistics · v<span id="version"></span></div>
+      </div>
+    </div>
+    <span id="saved" class="muted small" role="status" aria-live="polite"></span>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="h-general">
+      <h2 id="h-general">Optimization</h2>
+      <div class="field row">
+        <label for="enabled">Enable optimization on supported sites</label>
+        <span class="switch"><input type="checkbox" id="enabled" role="switch"><span class="track"></span></span>
+      </div>
+      <div class="field row">
+        <label for="autoOptimize">Optimize automatically after I pause typing<br><span class="muted small">Off = only when you click Optimize.</span></label>
+        <span class="switch"><input type="checkbox" id="autoOptimize" role="switch"><span class="track"></span></span>
+      </div>
+      <fieldset class="field">
+        <legend>When a shorter version is found</legend>
+        <label class="radio"><input type="radio" name="applyMode" value="manual"> <span><strong>Preview, then Apply</strong> (default). Text changes only when you click Apply.</span></label>
+        <label class="radio"><input type="radio" name="applyMode" value="previewOnly"> <span><strong>Preview only.</strong> Show estimates and the rewrite; never change my text.</span></label>
+        <label class="radio"><input type="radio" name="applyMode" value="autoApply"> <span><strong>Auto-apply after I pause.</strong> Replaces the text after the delay below. Always undoable, never sends.</span></label>
+      </fieldset>
+      <div class="grid2">
+        <label class="field">Delay after typing stops (ms)
+          <input type="number" id="debounceMs" min="300" max="3000" step="50">
+        </label>
+        <label class="field">Minimum prompt length (characters)
+          <input type="number" id="minPromptChars" min="0" max="2000" step="5">
+        </label>
+        <label class="field">Compression level
+          <select id="level">
+            <option value="conservative">Conservative (recommended)</option>
+            <option value="balanced">Balanced (also removes openers like “So,”)</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-sites">
+      <h2 id="h-sites">Websites</h2>
+      <p class="muted">The extension only runs on these sites. Turn individual sites off here or from the toolbar popup.</p>
+      <div id="sites"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-try">
+      <h2 id="h-try">Try it</h2>
+      <p class="muted">Paste any prompt to see what AquaGuard would change. This runs on your computer; nothing is saved.</p>
+      <textarea id="try-input" rows="5" aria-label="Prompt to optimize"></textarea>
+      <div class="row try-actions">
+        <button class="btn primary" id="try-run" type="button">Optimize</button>
+        <span class="muted small" id="try-stats" role="status" aria-live="polite"></span>
+      </div>
+      <div id="try-diff" class="diff" aria-label="Optimized prompt preview"></div>
+      <div id="try-chips" class="chips"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-stats">
+      <h2 id="h-stats">Usage statistics</h2>
+      <div class="field row">
+        <label for="collectStats">Keep aggregate statistics on this computer<br><span class="muted small">Off by default. Stores counts only (numbers of prompts, estimated tokens, rule names). Never prompt text, page addresses or page content.</span></label>
+        <span class="switch"><input type="checkbox" id="collectStats" role="switch"><span class="track"></span></span>
+      </div>
+      <div class="metrics wide" id="stats-metrics"></div>
+      <p class="muted small" id="stats-note"></p>
+      <div class="row wrap">
+        <button class="btn" id="export" type="button">Export statistics (JSON)</button>
+        <button class="btn danger" id="reset-stats" type="button">Reset statistics</button>
+      </div>
+      <p class="muted small">Exported files can be loaded into the AquaGuard Streamlit dashboard (Prompt Optimizer page).</p>
+    </section>
+
+    <section class="card" aria-labelledby="h-impact">
+      <h2 id="h-impact">Environmental impact (optional, illustrative)</h2>
+      <p>AquaGuard measures <strong>estimated input tokens removed</strong>. It does not measure energy or water. No provider publishes a verified per-token energy figure for these chat services, so impact is <strong>off</strong> by default.</p>
+      <div class="field row">
+        <label for="impact-mode">Show an illustrative scenario based on my own assumptions</label>
+        <span class="switch"><input type="checkbox" id="impact-mode" role="switch"><span class="track"></span></span>
+      </div>
+      <div class="grid2" id="impact-fields">
+        <label class="field">Energy, low (Wh per 1,000 input tokens)<input type="number" id="eLow" min="0" step="any"></label>
+        <label class="field">Energy, high (Wh per 1,000 input tokens)<input type="number" id="eHigh" min="0" step="any"></label>
+        <label class="field">Water intensity, low (litres per kWh)<input type="number" id="wLow" min="0" step="any"></label>
+        <label class="field">Water intensity, high (litres per kWh)<input type="number" id="wHigh" min="0" step="any"></label>
+      </div>
+      <p id="impact-result" class="impact" role="status" aria-live="polite"></p>
+      <details>
+        <summary>Background sources (context, not per-token factors)</summary>
+        <ul id="impact-refs" class="small"></ul>
+      </details>
+    </section>
+
+    <section class="card" aria-labelledby="h-privacy">
+      <h2 id="h-privacy">Privacy &amp; permissions</h2>
+      <ul class="small">
+        <li><strong>Local processing.</strong> Prompts are optimized inside your browser. The extension makes no network requests.</li>
+        <li><strong>Only the prompt box.</strong> It reads the prompt field on the listed sites, nothing else on the page, and nothing on other sites.</li>
+        <li><strong>No prompt storage.</strong> Your original text is kept in memory only, for Undo, and is discarded when the tab closes.</li>
+        <li><strong>Permissions:</strong> <code>storage</code> (save these settings) and access to the four chat sites listed above (to read and, when you click Apply, replace the prompt box).</li>
+        <li>The website you type into still receives whatever prompt you send. AquaGuard does not change that.</li>
+      </ul>
+      <button class="btn danger" id="reset-all" type="button">Reset all settings and data</button>
+    </section>
+  </main>
+
+  <script src="../src/engine/tokenizer.js"></script>
+  <script src="../src/engine/features.js"></script>
+  <script src="../src/engine/rules.js"></script>
+  <script src="../src/engine/compressor.js"></script>
+  <script src="../src/engine/diff.js"></script>
+  <script src="../src/engine/impact.js"></script>
+  <script src="../src/shared/settings.js"></script>
+  <script src="../src/content/adapters.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

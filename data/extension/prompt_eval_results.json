@@ -1,0 +1,3227 @@
+{
+  "schema": "aquaguard.prompt-optimizer.eval",
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-16T20:30:57.488Z",
+  "engineVersion": "1.0.0",
+  "tokenizer": "heuristic-bpe-v1",
+  "dataset": {
+    "file": "extension/eval/prompts.json",
+    "prompts": 45,
+    "synthetic": true
+  },
+  "summary": {
+    "conservative": {
+      "prompts": 45,
+      "changed": 26,
+      "unchanged": 19,
+      "expectationAccuracy": 100,
+      "mustPreserveRate": 100,
+      "termPreservationRate": 100,
+      "falseCompressions": 0,
+      "shouldNotCompressCases": 15,
+      "meanReductionPctChangedOnly": 20.6,
+      "meanReductionPctAllPrompts": 11.9,
+      "aggregateReductionPctExact": 15.8,
+      "latencyMsMedian": 0.273,
+      "latencyMsMax": 1.345
+    },
+    "balanced": {
+      "prompts": 45,
+      "changed": 26,
+      "unchanged": 19,
+      "expectationAccuracy": 100,
+      "mustPreserveRate": 100,
+      "termPreservationRate": 100,
+      "falseCompressions": 0,
+      "shouldNotCompressCases": 15,
+      "meanReductionPctChangedOnly": 21,
+      "meanReductionPctAllPrompts": 12.1,
+      "aggregateReductionPctExact": 16.1,
+      "latencyMsMedian": 0.247,
+      "latencyMsMax": 0.76
+    }
+  },
+  "categories": {
+    "conservative": {
+      "simple-question": {
+        "prompts": 5,
+        "changed": 2,
+        "unchanged": 3,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 3,
+        "meanReductionPctChangedOnly": 46.9,
+        "meanReductionPctAllPrompts": 18.8,
+        "aggregateReductionPctExact": 33.9,
+        "latencyMsMedian": 0.273,
+        "latencyMsMax": 0.539
+      },
+      "coding": {
+        "prompts": 7,
+        "changed": 5,
+        "unchanged": 2,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 21.2,
+        "meanReductionPctAllPrompts": 15.2,
+        "aggregateReductionPctExact": 16.5,
+        "latencyMsMedian": 0.626,
+        "latencyMsMax": 1.165
+      },
+      "long-technical": {
+        "prompts": 4,
+        "changed": 3,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 16.1,
+        "meanReductionPctAllPrompts": 12,
+        "aggregateReductionPctExact": 15.2,
+        "latencyMsMedian": 0.779,
+        "latencyMsMax": 1.345
+      },
+      "multi-step": {
+        "prompts": 3,
+        "changed": 2,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 8.5,
+        "meanReductionPctAllPrompts": 5.7,
+        "aggregateReductionPctExact": 6,
+        "latencyMsMedian": 0.392,
+        "latencyMsMax": 0.776
+      },
+      "numbers-units": {
+        "prompts": 4,
+        "changed": 3,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 12.8,
+        "meanReductionPctAllPrompts": 9.6,
+        "aggregateReductionPctExact": 11.3,
+        "latencyMsMedian": 0.242,
+        "latencyMsMax": 0.302
+      },
+      "constraints-negations": {
+        "prompts": 6,
+        "changed": 4,
+        "unchanged": 2,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 22.2,
+        "meanReductionPctAllPrompts": 14.8,
+        "aggregateReductionPctExact": 18.5,
+        "latencyMsMedian": 0.255,
+        "latencyMsMax": 0.44
+      },
+      "structured-output": {
+        "prompts": 4,
+        "changed": 3,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 11,
+        "meanReductionPctAllPrompts": 8.2,
+        "aggregateReductionPctExact": 9.3,
+        "latencyMsMedian": 0.35,
+        "latencyMsMax": 0.513
+      },
+      "should-not-compress": {
+        "prompts": 8,
+        "changed": 0,
+        "unchanged": 8,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 8,
+        "meanReductionPctChangedOnly": 0,
+        "meanReductionPctAllPrompts": 0,
+        "aggregateReductionPctExact": 0,
+        "latencyMsMedian": 0.125,
+        "latencyMsMax": 0.178
+      },
+      "verbose": {
+        "prompts": 4,
+        "changed": 4,
+        "unchanged": 0,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 27.7,
+        "meanReductionPctAllPrompts": 27.7,
+        "aggregateReductionPctExact": 30.9,
+        "latencyMsMedian": 0.469,
+        "latencyMsMax": 0.611
+      }
+    },
+    "balanced": {
+      "simple-question": {
+        "prompts": 5,
+        "changed": 2,
+        "unchanged": 3,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 3,
+        "meanReductionPctChangedOnly": 46.9,
+        "meanReductionPctAllPrompts": 18.8,
+        "aggregateReductionPctExact": 33.9,
+        "latencyMsMedian": 0.118,
+        "latencyMsMax": 0.305
+      },
+      "coding": {
+        "prompts": 7,
+        "changed": 5,
+        "unchanged": 2,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 22.2,
+        "meanReductionPctAllPrompts": 15.9,
+        "aggregateReductionPctExact": 17.3,
+        "latencyMsMedian": 0.452,
+        "latencyMsMax": 0.602
+      },
+      "long-technical": {
+        "prompts": 4,
+        "changed": 3,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 16.1,
+        "meanReductionPctAllPrompts": 12,
+        "aggregateReductionPctExact": 15.2,
+        "latencyMsMedian": 0.72,
+        "latencyMsMax": 0.76
+      },
+      "multi-step": {
+        "prompts": 3,
+        "changed": 2,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 8.5,
+        "meanReductionPctAllPrompts": 5.7,
+        "aggregateReductionPctExact": 6,
+        "latencyMsMedian": 0.294,
+        "latencyMsMax": 0.485
+      },
+      "numbers-units": {
+        "prompts": 4,
+        "changed": 3,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 12.8,
+        "meanReductionPctAllPrompts": 9.6,
+        "aggregateReductionPctExact": 11.3,
+        "latencyMsMedian": 0.238,
+        "latencyMsMax": 0.28
+      },
+      "constraints-negations": {
+        "prompts": 6,
+        "changed": 4,
+        "unchanged": 2,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 22.2,
+        "meanReductionPctAllPrompts": 14.8,
+        "aggregateReductionPctExact": 18.5,
+        "latencyMsMedian": 0.268,
+        "latencyMsMax": 0.417
+      },
+      "structured-output": {
+        "prompts": 4,
+        "changed": 3,
+        "unchanged": 1,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 1,
+        "meanReductionPctChangedOnly": 11,
+        "meanReductionPctAllPrompts": 8.2,
+        "aggregateReductionPctExact": 9.3,
+        "latencyMsMedian": 0.338,
+        "latencyMsMax": 0.49
+      },
+      "should-not-compress": {
+        "prompts": 8,
+        "changed": 0,
+        "unchanged": 8,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 8,
+        "meanReductionPctChangedOnly": 0,
+        "meanReductionPctAllPrompts": 0,
+        "aggregateReductionPctExact": 0,
+        "latencyMsMedian": 0.126,
+        "latencyMsMax": 0.247
+      },
+      "verbose": {
+        "prompts": 4,
+        "changed": 4,
+        "unchanged": 0,
+        "expectationAccuracy": 100,
+        "mustPreserveRate": 100,
+        "termPreservationRate": 100,
+        "falseCompressions": 0,
+        "shouldNotCompressCases": 0,
+        "meanReductionPctChangedOnly": 28.6,
+        "meanReductionPctAllPrompts": 28.6,
+        "aggregateReductionPctExact": 32,
+        "latencyMsMedian": 0.421,
+        "latencyMsMax": 0.585
+      }
+    }
+  },
+  "calibration": {
+    "reference": "o200k_base (js-tiktoken)",
+    "samples": 90,
+    "meanAbsPctError": 4.3,
+    "meanSignedPctError": 3.2,
+    "within10Pct": 84.4
+  },
+  "rows": [
+    {
+      "id": "simple-01",
+      "category": "simple-question",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 7,
+        "optimized": 7,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 7,
+        "optimized": 7,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.273,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-02",
+      "category": "simple-question",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 16,
+        "optimized": 9,
+        "saved": 7,
+        "reductionPct": 43.75
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 9,
+        "saved": 7,
+        "reductionPct": 43.75
+      },
+      "latencyMsMedian": 0.433,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-03",
+      "category": "simple-question",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 6,
+        "optimized": 6,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 6,
+        "optimized": 6,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.168,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-04",
+      "category": "simple-question",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 28,
+        "optimized": 14,
+        "saved": 14,
+        "reductionPct": 50
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 14,
+        "saved": 14,
+        "reductionPct": 50
+      },
+      "latencyMsMedian": 0.539,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-05",
+      "category": "simple-question",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 5,
+        "optimized": 5,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 5,
+        "optimized": 5,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.155,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "code-01",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 30,
+        "optimized": 21,
+        "saved": 9,
+        "reductionPct": 30
+      },
+      "exactO200k": {
+        "original": 29,
+        "optimized": 20,
+        "saved": 9,
+        "reductionPct": 31.03
+      },
+      "latencyMsMedian": 0.626,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-02",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 78,
+        "optimized": 68,
+        "saved": 10,
+        "reductionPct": 12.82
+      },
+      "exactO200k": {
+        "original": 70,
+        "optimized": 60,
+        "saved": 10,
+        "reductionPct": 14.29
+      },
+      "latencyMsMedian": 0.776,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-03",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 33,
+        "optimized": 33,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 32,
+        "optimized": 32,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.273,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "code-04",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 41,
+        "optimized": 38,
+        "saved": 3,
+        "reductionPct": 7.32
+      },
+      "exactO200k": {
+        "original": 40,
+        "optimized": 37,
+        "saved": 3,
+        "reductionPct": 7.5
+      },
+      "latencyMsMedian": 0.617,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-05",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 43,
+        "optimized": 27,
+        "saved": 16,
+        "reductionPct": 37.21
+      },
+      "exactO200k": {
+        "original": 44,
+        "optimized": 28,
+        "saved": 16,
+        "reductionPct": 36.36
+      },
+      "latencyMsMedian": 1.165,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-06",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 17,
+        "optimized": 17,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.225,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "code-07",
+      "category": "coding",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 53,
+        "optimized": 45,
+        "saved": 8,
+        "reductionPct": 15.09
+      },
+      "exactO200k": {
+        "original": 47,
+        "optimized": 39,
+        "saved": 8,
+        "reductionPct": 17.02
+      },
+      "latencyMsMedian": 1.098,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-01",
+      "category": "long-technical",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 95,
+        "optimized": 69,
+        "saved": 26,
+        "reductionPct": 27.37
+      },
+      "exactO200k": {
+        "original": 90,
+        "optimized": 66,
+        "saved": 24,
+        "reductionPct": 26.67
+      },
+      "latencyMsMedian": 1.345,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 4
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-02",
+      "category": "long-technical",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 75,
+        "optimized": 66,
+        "saved": 9,
+        "reductionPct": 12
+      },
+      "exactO200k": {
+        "original": 76,
+        "optimized": 67,
+        "saved": 9,
+        "reductionPct": 11.84
+      },
+      "latencyMsMedian": 0.678,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "please-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-03",
+      "category": "long-technical",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 69,
+        "optimized": 63,
+        "saved": 6,
+        "reductionPct": 8.7
+      },
+      "exactO200k": {
+        "original": 62,
+        "optimized": 56,
+        "saved": 6,
+        "reductionPct": 9.68
+      },
+      "latencyMsMedian": 0.879,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-04",
+      "category": "long-technical",
+      "level": "conservative",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 29,
+        "optimized": 29,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 28,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.196,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "steps-01",
+      "category": "multi-step",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 58,
+        "optimized": 54,
+        "saved": 4,
+        "reductionPct": 6.9
+      },
+      "exactO200k": {
+        "original": 51,
+        "optimized": 48,
+        "saved": 3,
+        "reductionPct": 5.88
+      },
+      "latencyMsMedian": 0.776,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "steps-02",
+      "category": "multi-step",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 36,
+        "optimized": 32,
+        "saved": 4,
+        "reductionPct": 11.11
+      },
+      "exactO200k": {
+        "original": 36,
+        "optimized": 32,
+        "saved": 4,
+        "reductionPct": 11.11
+      },
+      "latencyMsMedian": 0.392,
+      "transformations": [
+        {
+          "ruleId": "verbose-phrase",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "steps-03",
+      "category": "multi-step",
+      "level": "conservative",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 31,
+        "optimized": 31,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 29,
+        "optimized": 29,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.197,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "num-01",
+      "category": "numbers-units",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 37,
+        "optimized": 29,
+        "saved": 8,
+        "reductionPct": 21.62
+      },
+      "exactO200k": {
+        "original": 37,
+        "optimized": 29,
+        "saved": 8,
+        "reductionPct": 21.62
+      },
+      "latencyMsMedian": 0.302,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "num-02",
+      "category": "numbers-units",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 35,
+        "optimized": 30,
+        "saved": 5,
+        "reductionPct": 14.29
+      },
+      "exactO200k": {
+        "original": 35,
+        "optimized": 30,
+        "saved": 5,
+        "reductionPct": 14.29
+      },
+      "latencyMsMedian": 0.247,
+      "transformations": [
+        {
+          "ruleId": "verbose-phrase",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "num-03",
+      "category": "numbers-units",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.091,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "num-04",
+      "category": "numbers-units",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 41,
+        "optimized": 40,
+        "saved": 1,
+        "reductionPct": 2.44
+      },
+      "exactO200k": {
+        "original": 40,
+        "optimized": 39,
+        "saved": 1,
+        "reductionPct": 2.5
+      },
+      "latencyMsMedian": 0.237,
+      "transformations": [
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-01",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 42,
+        "optimized": 32,
+        "saved": 10,
+        "reductionPct": 23.81
+      },
+      "exactO200k": {
+        "original": 44,
+        "optimized": 33,
+        "saved": 11,
+        "reductionPct": 25
+      },
+      "latencyMsMedian": 0.44,
+      "transformations": [
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-02",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 27,
+        "optimized": 24,
+        "saved": 3,
+        "reductionPct": 11.11
+      },
+      "exactO200k": {
+        "original": 26,
+        "optimized": 23,
+        "saved": 3,
+        "reductionPct": 11.54
+      },
+      "latencyMsMedian": 0.239,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-03",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 11,
+        "optimized": 11,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 11,
+        "optimized": 11,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.126,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-04",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 22,
+        "optimized": 22,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 21,
+        "optimized": 21,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.163,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-05",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 38,
+        "optimized": 29,
+        "saved": 9,
+        "reductionPct": 23.68
+      },
+      "exactO200k": {
+        "original": 38,
+        "optimized": 29,
+        "saved": 9,
+        "reductionPct": 23.68
+      },
+      "latencyMsMedian": 0.355,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-06",
+      "category": "constraints-negations",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 29,
+        "optimized": 20,
+        "saved": 9,
+        "reductionPct": 31.03
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 20,
+        "saved": 8,
+        "reductionPct": 28.57
+      },
+      "latencyMsMedian": 0.271,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 2
+        },
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-01",
+      "category": "structured-output",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 55,
+        "optimized": 52,
+        "saved": 3,
+        "reductionPct": 5.45
+      },
+      "exactO200k": {
+        "original": 52,
+        "optimized": 49,
+        "saved": 3,
+        "reductionPct": 5.77
+      },
+      "latencyMsMedian": 0.513,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-02",
+      "category": "structured-output",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 37,
+        "optimized": 32,
+        "saved": 5,
+        "reductionPct": 13.51
+      },
+      "exactO200k": {
+        "original": 39,
+        "optimized": 34,
+        "saved": 5,
+        "reductionPct": 12.82
+      },
+      "latencyMsMedian": 0.445,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-03",
+      "category": "structured-output",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 11,
+        "optimized": 11,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 10,
+        "optimized": 10,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.097,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-04",
+      "category": "structured-output",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 28,
+        "optimized": 22,
+        "saved": 6,
+        "reductionPct": 21.43
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 24,
+        "saved": 4,
+        "reductionPct": 14.29
+      },
+      "latencyMsMedian": 0.255,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-01",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.139,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-02",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 20,
+        "optimized": 20,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 21,
+        "optimized": 21,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.153,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-03",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Optimization would remove the entire prompt.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 2,
+        "optimized": 2,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 2,
+        "optimized": 2,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.08,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-04",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 7,
+        "optimized": 7,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 6,
+        "optimized": 6,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.11,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-05",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 30,
+        "optimized": 30,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 26,
+        "optimized": 26,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.1,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-06",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.169,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-07",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.178,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-08",
+      "category": "should-not-compress",
+      "level": "conservative",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 10,
+        "optimized": 10,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.102,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-01",
+      "category": "verbose",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 57,
+        "optimized": 24,
+        "saved": 33,
+        "reductionPct": 57.89
+      },
+      "exactO200k": {
+        "original": 55,
+        "optimized": 23,
+        "saved": 32,
+        "reductionPct": 58.18
+      },
+      "latencyMsMedian": 0.505,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 4
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-02",
+      "category": "verbose",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 63,
+        "optimized": 51,
+        "saved": 12,
+        "reductionPct": 19.05
+      },
+      "exactO200k": {
+        "original": 63,
+        "optimized": 51,
+        "saved": 12,
+        "reductionPct": 19.05
+      },
+      "latencyMsMedian": 0.611,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 3
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-03",
+      "category": "verbose",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 33,
+        "optimized": 26,
+        "saved": 7,
+        "reductionPct": 21.21
+      },
+      "exactO200k": {
+        "original": 34,
+        "optimized": 27,
+        "saved": 7,
+        "reductionPct": 20.59
+      },
+      "latencyMsMedian": 0.41,
+      "transformations": [
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-04",
+      "category": "verbose",
+      "level": "conservative",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 23,
+        "optimized": 20,
+        "saved": 3,
+        "reductionPct": 13.04
+      },
+      "exactO200k": {
+        "original": 23,
+        "optimized": 20,
+        "saved": 3,
+        "reductionPct": 13.04
+      },
+      "latencyMsMedian": 0.433,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 2
+        },
+        {
+          "ruleId": "doubled-word",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-01",
+      "category": "simple-question",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 7,
+        "optimized": 7,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 7,
+        "optimized": 7,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.118,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-02",
+      "category": "simple-question",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 16,
+        "optimized": 9,
+        "saved": 7,
+        "reductionPct": 43.75
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 9,
+        "saved": 7,
+        "reductionPct": 43.75
+      },
+      "latencyMsMedian": 0.265,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-03",
+      "category": "simple-question",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 6,
+        "optimized": 6,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 6,
+        "optimized": 6,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.085,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-04",
+      "category": "simple-question",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 28,
+        "optimized": 14,
+        "saved": 14,
+        "reductionPct": 50
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 14,
+        "saved": 14,
+        "reductionPct": 50
+      },
+      "latencyMsMedian": 0.305,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "simple-05",
+      "category": "simple-question",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 5,
+        "optimized": 5,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 5,
+        "optimized": 5,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.094,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "code-01",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 30,
+        "optimized": 21,
+        "saved": 9,
+        "reductionPct": 30
+      },
+      "exactO200k": {
+        "original": 29,
+        "optimized": 20,
+        "saved": 9,
+        "reductionPct": 31.03
+      },
+      "latencyMsMedian": 0.316,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-02",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 78,
+        "optimized": 68,
+        "saved": 10,
+        "reductionPct": 12.82
+      },
+      "exactO200k": {
+        "original": 70,
+        "optimized": 60,
+        "saved": 10,
+        "reductionPct": 14.29
+      },
+      "latencyMsMedian": 0.493,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-03",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 33,
+        "optimized": 33,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 32,
+        "optimized": 32,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.189,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "code-04",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 41,
+        "optimized": 36,
+        "saved": 5,
+        "reductionPct": 12.2
+      },
+      "exactO200k": {
+        "original": 40,
+        "optimized": 35,
+        "saved": 5,
+        "reductionPct": 12.5
+      },
+      "latencyMsMedian": 0.602,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "help-me",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-05",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 43,
+        "optimized": 27,
+        "saved": 16,
+        "reductionPct": 37.21
+      },
+      "exactO200k": {
+        "original": 44,
+        "optimized": 28,
+        "saved": 16,
+        "reductionPct": 36.36
+      },
+      "latencyMsMedian": 0.493,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "code-06",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 17,
+        "optimized": 17,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.116,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "code-07",
+      "category": "coding",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 53,
+        "optimized": 45,
+        "saved": 8,
+        "reductionPct": 15.09
+      },
+      "exactO200k": {
+        "original": 47,
+        "optimized": 39,
+        "saved": 8,
+        "reductionPct": 17.02
+      },
+      "latencyMsMedian": 0.452,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-01",
+      "category": "long-technical",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 95,
+        "optimized": 69,
+        "saved": 26,
+        "reductionPct": 27.37
+      },
+      "exactO200k": {
+        "original": 90,
+        "optimized": 66,
+        "saved": 24,
+        "reductionPct": 26.67
+      },
+      "latencyMsMedian": 0.737,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 4
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-02",
+      "category": "long-technical",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 75,
+        "optimized": 66,
+        "saved": 9,
+        "reductionPct": 12
+      },
+      "exactO200k": {
+        "original": 76,
+        "optimized": 67,
+        "saved": 9,
+        "reductionPct": 11.84
+      },
+      "latencyMsMedian": 0.702,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "please-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-03",
+      "category": "long-technical",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 69,
+        "optimized": 63,
+        "saved": 6,
+        "reductionPct": 8.7
+      },
+      "exactO200k": {
+        "original": 62,
+        "optimized": 56,
+        "saved": 6,
+        "reductionPct": 9.68
+      },
+      "latencyMsMedian": 0.76,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "tech-04",
+      "category": "long-technical",
+      "level": "balanced",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 29,
+        "optimized": 29,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 28,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.171,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "steps-01",
+      "category": "multi-step",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 58,
+        "optimized": 54,
+        "saved": 4,
+        "reductionPct": 6.9
+      },
+      "exactO200k": {
+        "original": 51,
+        "optimized": 48,
+        "saved": 3,
+        "reductionPct": 5.88
+      },
+      "latencyMsMedian": 0.485,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "steps-02",
+      "category": "multi-step",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 36,
+        "optimized": 32,
+        "saved": 4,
+        "reductionPct": 11.11
+      },
+      "exactO200k": {
+        "original": 36,
+        "optimized": 32,
+        "saved": 4,
+        "reductionPct": 11.11
+      },
+      "latencyMsMedian": 0.294,
+      "transformations": [
+        {
+          "ruleId": "verbose-phrase",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "steps-03",
+      "category": "multi-step",
+      "level": "balanced",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 31,
+        "optimized": 31,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 29,
+        "optimized": 29,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.169,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "num-01",
+      "category": "numbers-units",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 37,
+        "optimized": 29,
+        "saved": 8,
+        "reductionPct": 21.62
+      },
+      "exactO200k": {
+        "original": 37,
+        "optimized": 29,
+        "saved": 8,
+        "reductionPct": 21.62
+      },
+      "latencyMsMedian": 0.28,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "num-02",
+      "category": "numbers-units",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 35,
+        "optimized": 30,
+        "saved": 5,
+        "reductionPct": 14.29
+      },
+      "exactO200k": {
+        "original": 35,
+        "optimized": 30,
+        "saved": 5,
+        "reductionPct": 14.29
+      },
+      "latencyMsMedian": 0.233,
+      "transformations": [
+        {
+          "ruleId": "verbose-phrase",
+          "count": 2
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "num-03",
+      "category": "numbers-units",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.09,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "num-04",
+      "category": "numbers-units",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 41,
+        "optimized": 40,
+        "saved": 1,
+        "reductionPct": 2.44
+      },
+      "exactO200k": {
+        "original": 40,
+        "optimized": 39,
+        "saved": 1,
+        "reductionPct": 2.5
+      },
+      "latencyMsMedian": 0.242,
+      "transformations": [
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-01",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 42,
+        "optimized": 32,
+        "saved": 10,
+        "reductionPct": 23.81
+      },
+      "exactO200k": {
+        "original": 44,
+        "optimized": 33,
+        "saved": 11,
+        "reductionPct": 25
+      },
+      "latencyMsMedian": 0.417,
+      "transformations": [
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-02",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 27,
+        "optimized": 24,
+        "saved": 3,
+        "reductionPct": 11.11
+      },
+      "exactO200k": {
+        "original": 26,
+        "optimized": 23,
+        "saved": 3,
+        "reductionPct": 11.54
+      },
+      "latencyMsMedian": 0.235,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-03",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 11,
+        "optimized": 11,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 11,
+        "optimized": 11,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.113,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-04",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "either",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 22,
+        "optimized": 22,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 21,
+        "optimized": 21,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.158,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-05",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 38,
+        "optimized": 29,
+        "saved": 9,
+        "reductionPct": 23.68
+      },
+      "exactO200k": {
+        "original": 38,
+        "optimized": 29,
+        "saved": 9,
+        "reductionPct": 23.68
+      },
+      "latencyMsMedian": 0.301,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "neg-06",
+      "category": "constraints-negations",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 29,
+        "optimized": 20,
+        "saved": 9,
+        "reductionPct": 31.03
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 20,
+        "saved": 8,
+        "reductionPct": 28.57
+      },
+      "latencyMsMedian": 0.304,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 2
+        },
+        {
+          "ruleId": "duplicate-sentence",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-01",
+      "category": "structured-output",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 55,
+        "optimized": 52,
+        "saved": 3,
+        "reductionPct": 5.45
+      },
+      "exactO200k": {
+        "original": 52,
+        "optimized": 49,
+        "saved": 3,
+        "reductionPct": 5.77
+      },
+      "latencyMsMedian": 0.49,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-02",
+      "category": "structured-output",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 37,
+        "optimized": 32,
+        "saved": 5,
+        "reductionPct": 13.51
+      },
+      "exactO200k": {
+        "original": 39,
+        "optimized": 34,
+        "saved": 5,
+        "reductionPct": 12.82
+      },
+      "latencyMsMedian": 0.416,
+      "transformations": [
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-03",
+      "category": "structured-output",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 11,
+        "optimized": 11,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 10,
+        "optimized": 10,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.099,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "fmt-04",
+      "category": "structured-output",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 28,
+        "optimized": 22,
+        "saved": 6,
+        "reductionPct": 21.43
+      },
+      "exactO200k": {
+        "original": 28,
+        "optimized": 24,
+        "saved": 4,
+        "reductionPct": 14.29
+      },
+      "latencyMsMedian": 0.26,
+      "transformations": [
+        {
+          "ruleId": "request-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-01",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.123,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-02",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 20,
+        "optimized": 20,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 21,
+        "optimized": 21,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.138,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-03",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Optimization would remove the entire prompt.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 2,
+        "optimized": 2,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 2,
+        "optimized": 2,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.065,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-04",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 7,
+        "optimized": 7,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 6,
+        "optimized": 6,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.089,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-05",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 30,
+        "optimized": 30,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 26,
+        "optimized": 26,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.079,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-06",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.178,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-07",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 16,
+        "optimized": 16,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.247,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "keep-08",
+      "category": "should-not-compress",
+      "level": "balanced",
+      "expect": "unchanged",
+      "changed": false,
+      "reason": "Already concise: no safe optimization found.",
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 12,
+        "optimized": 12,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "exactO200k": {
+        "original": 10,
+        "optimized": 10,
+        "saved": 0,
+        "reductionPct": 0
+      },
+      "latencyMsMedian": 0.128,
+      "transformations": [],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-01",
+      "category": "verbose",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 57,
+        "optimized": 22,
+        "saved": 35,
+        "reductionPct": 61.4
+      },
+      "exactO200k": {
+        "original": 55,
+        "optimized": 21,
+        "saved": 34,
+        "reductionPct": 61.82
+      },
+      "latencyMsMedian": 0.469,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "pleasantry",
+          "count": 4
+        },
+        {
+          "ruleId": "want-preamble",
+          "count": 1
+        },
+        {
+          "ruleId": "help-me",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-02",
+      "category": "verbose",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 63,
+        "optimized": 51,
+        "saved": 12,
+        "reductionPct": 19.05
+      },
+      "exactO200k": {
+        "original": 63,
+        "optimized": 51,
+        "saved": 12,
+        "reductionPct": 19.05
+      },
+      "latencyMsMedian": 0.585,
+      "transformations": [
+        {
+          "ruleId": "greeting",
+          "count": 1
+        },
+        {
+          "ruleId": "verbose-phrase",
+          "count": 3
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-03",
+      "category": "verbose",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 33,
+        "optimized": 26,
+        "saved": 7,
+        "reductionPct": 21.21
+      },
+      "exactO200k": {
+        "original": 34,
+        "optimized": 27,
+        "saved": 7,
+        "reductionPct": 20.59
+      },
+      "latencyMsMedian": 0.23,
+      "transformations": [
+        {
+          "ruleId": "pleasantry",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    },
+    {
+      "id": "verbose-04",
+      "category": "verbose",
+      "level": "balanced",
+      "expect": "compress",
+      "changed": true,
+      "reason": null,
+      "expectationMet": true,
+      "preservedAll": true,
+      "termsPreserved": true,
+      "lostTerms": [],
+      "heuristic": {
+        "original": 23,
+        "optimized": 20,
+        "saved": 3,
+        "reductionPct": 13.04
+      },
+      "exactO200k": {
+        "original": 23,
+        "optimized": 20,
+        "saved": 3,
+        "reductionPct": 13.04
+      },
+      "latencyMsMedian": 0.372,
+      "transformations": [
+        {
+          "ruleId": "please-prefix",
+          "count": 2
+        },
+        {
+          "ruleId": "doubled-word",
+          "count": 1
+        }
+      ],
+      "missingCount": 0
+    }
+  ]
+}

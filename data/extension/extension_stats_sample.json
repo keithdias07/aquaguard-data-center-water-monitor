@@ -1,0 +1,356 @@
+{
+  "schema": "aquaguard.prompt-optimizer.stats",
+  "schemaVersion": 1,
+  "exportedAt": "2026-10-01T00:00:00.000Z",
+  "extensionVersion": "0.1.0",
+  "tokenizer": {
+    "id": "heuristic-bpe-v1",
+    "exact": false
+  },
+  "firstRecordedOn": "2026-09-01",
+  "totals": {
+    "optimizationRuns": 597,
+    "runsWithSuggestion": 337,
+    "runsUnchanged": 260,
+    "latencyMsTotal": 576.6154662483358,
+    "promptsCompleted": 290,
+    "promptsOptimized": 106,
+    "promptsLeftUnchanged": 120,
+    "promptsDeclined": 64,
+    "applyActions": 118,
+    "autoApplied": 0,
+    "undoActions": 12,
+    "originalTokensApplied": 13484,
+    "optimizedTokensApplied": 11158,
+    "tokensSaved": 2326,
+    "tokensSavedUndone": 265,
+    "reductionPctSum": 2056.21589498871
+  },
+  "summary": {
+    "promptsOptimized": 106,
+    "promptsLeftUnchanged": 120,
+    "promptsDeclined": 64,
+    "netTokensSaved": 2061,
+    "averageReductionPct": 17.42555843210771,
+    "averageLatencyMs": 0.965855052342271,
+    "optimizationRuns": 597,
+    "applyActions": 118,
+    "undoActions": 12,
+    "appliedNet": 106
+  },
+  "daily": [
+    {
+      "date": "2026-09-01",
+      "optimizationRuns": 12,
+      "runsUnchanged": 4,
+      "promptsOptimized": 2,
+      "promptsLeftUnchanged": 2,
+      "promptsDeclined": 1,
+      "tokensSaved": 30,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-02",
+      "optimizationRuns": 18,
+      "runsUnchanged": 9,
+      "promptsOptimized": 3,
+      "promptsLeftUnchanged": 4,
+      "promptsDeclined": 2,
+      "tokensSaved": 49,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-03",
+      "optimizationRuns": 9,
+      "runsUnchanged": 7,
+      "promptsOptimized": 1,
+      "promptsLeftUnchanged": 4,
+      "promptsDeclined": 0,
+      "tokensSaved": 7,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-04",
+      "optimizationRuns": 28,
+      "runsUnchanged": 5,
+      "promptsOptimized": 5,
+      "promptsLeftUnchanged": 3,
+      "promptsDeclined": 6,
+      "tokensSaved": 138,
+      "tokensSavedUndone": 28
+    },
+    {
+      "date": "2026-09-05",
+      "optimizationRuns": 17,
+      "runsUnchanged": 8,
+      "promptsOptimized": 4,
+      "promptsLeftUnchanged": 3,
+      "promptsDeclined": 1,
+      "tokensSaved": 119,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-06",
+      "optimizationRuns": 14,
+      "runsUnchanged": 0,
+      "promptsOptimized": 5,
+      "promptsLeftUnchanged": 0,
+      "promptsDeclined": 2,
+      "tokensSaved": 134,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-07",
+      "optimizationRuns": 29,
+      "runsUnchanged": 7,
+      "promptsOptimized": 7,
+      "promptsLeftUnchanged": 3,
+      "promptsDeclined": 4,
+      "tokensSaved": 136,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-08",
+      "optimizationRuns": 15,
+      "runsUnchanged": 7,
+      "promptsOptimized": 5,
+      "promptsLeftUnchanged": 4,
+      "promptsDeclined": 1,
+      "tokensSaved": 70,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-09",
+      "optimizationRuns": 9,
+      "runsUnchanged": 3,
+      "promptsOptimized": 2,
+      "promptsLeftUnchanged": 1,
+      "promptsDeclined": 1,
+      "tokensSaved": 42,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-10",
+      "optimizationRuns": 27,
+      "runsUnchanged": 14,
+      "promptsOptimized": 4,
+      "promptsLeftUnchanged": 6,
+      "promptsDeclined": 2,
+      "tokensSaved": 112,
+      "tokensSavedUndone": 37
+    },
+    {
+      "date": "2026-09-11",
+      "optimizationRuns": 13,
+      "runsUnchanged": 3,
+      "promptsOptimized": 3,
+      "promptsLeftUnchanged": 1,
+      "promptsDeclined": 4,
+      "tokensSaved": 84,
+      "tokensSavedUndone": 20
+    },
+    {
+      "date": "2026-09-12",
+      "optimizationRuns": 24,
+      "runsUnchanged": 13,
+      "promptsOptimized": 4,
+      "promptsLeftUnchanged": 7,
+      "promptsDeclined": 1,
+      "tokensSaved": 70,
+      "tokensSavedUndone": 16
+    },
+    {
+      "date": "2026-09-13",
+      "optimizationRuns": 8,
+      "runsUnchanged": 4,
+      "promptsOptimized": 2,
+      "promptsLeftUnchanged": 2,
+      "promptsDeclined": 0,
+      "tokensSaved": 49,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-14",
+      "optimizationRuns": 22,
+      "runsUnchanged": 12,
+      "promptsOptimized": 3,
+      "promptsLeftUnchanged": 5,
+      "promptsDeclined": 3,
+      "tokensSaved": 76,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-15",
+      "optimizationRuns": 26,
+      "runsUnchanged": 9,
+      "promptsOptimized": 4,
+      "promptsLeftUnchanged": 6,
+      "promptsDeclined": 4,
+      "tokensSaved": 92,
+      "tokensSavedUndone": 45
+    },
+    {
+      "date": "2026-09-16",
+      "optimizationRuns": 27,
+      "runsUnchanged": 10,
+      "promptsOptimized": 3,
+      "promptsLeftUnchanged": 4,
+      "promptsDeclined": 4,
+      "tokensSaved": 127,
+      "tokensSavedUndone": 60
+    },
+    {
+      "date": "2026-09-17",
+      "optimizationRuns": 22,
+      "runsUnchanged": 15,
+      "promptsOptimized": 2,
+      "promptsLeftUnchanged": 7,
+      "promptsDeclined": 1,
+      "tokensSaved": 47,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-18",
+      "optimizationRuns": 23,
+      "runsUnchanged": 12,
+      "promptsOptimized": 3,
+      "promptsLeftUnchanged": 6,
+      "promptsDeclined": 2,
+      "tokensSaved": 92,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-19",
+      "optimizationRuns": 8,
+      "runsUnchanged": 3,
+      "promptsOptimized": 1,
+      "promptsLeftUnchanged": 1,
+      "promptsDeclined": 1,
+      "tokensSaved": 33,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-20",
+      "optimizationRuns": 27,
+      "runsUnchanged": 13,
+      "promptsOptimized": 4,
+      "promptsLeftUnchanged": 6,
+      "promptsDeclined": 4,
+      "tokensSaved": 90,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-21",
+      "optimizationRuns": 23,
+      "runsUnchanged": 10,
+      "promptsOptimized": 6,
+      "promptsLeftUnchanged": 5,
+      "promptsDeclined": 2,
+      "tokensSaved": 102,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-22",
+      "optimizationRuns": 7,
+      "runsUnchanged": 2,
+      "promptsOptimized": 1,
+      "promptsLeftUnchanged": 1,
+      "promptsDeclined": 1,
+      "tokensSaved": 50,
+      "tokensSavedUndone": 29
+    },
+    {
+      "date": "2026-09-23",
+      "optimizationRuns": 21,
+      "runsUnchanged": 14,
+      "promptsOptimized": 1,
+      "promptsLeftUnchanged": 6,
+      "promptsDeclined": 3,
+      "tokensSaved": 20,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-24",
+      "optimizationRuns": 18,
+      "runsUnchanged": 9,
+      "promptsOptimized": 5,
+      "promptsLeftUnchanged": 4,
+      "promptsDeclined": 1,
+      "tokensSaved": 99,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-25",
+      "optimizationRuns": 29,
+      "runsUnchanged": 11,
+      "promptsOptimized": 6,
+      "promptsLeftUnchanged": 5,
+      "promptsDeclined": 2,
+      "tokensSaved": 59,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-26",
+      "optimizationRuns": 12,
+      "runsUnchanged": 6,
+      "promptsOptimized": 3,
+      "promptsLeftUnchanged": 3,
+      "promptsDeclined": 1,
+      "tokensSaved": 43,
+      "tokensSavedUndone": 8
+    },
+    {
+      "date": "2026-09-27",
+      "optimizationRuns": 27,
+      "runsUnchanged": 11,
+      "promptsOptimized": 6,
+      "promptsLeftUnchanged": 4,
+      "promptsDeclined": 1,
+      "tokensSaved": 120,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-28",
+      "optimizationRuns": 28,
+      "runsUnchanged": 17,
+      "promptsOptimized": 1,
+      "promptsLeftUnchanged": 7,
+      "promptsDeclined": 5,
+      "tokensSaved": 23,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-29",
+      "optimizationRuns": 24,
+      "runsUnchanged": 15,
+      "promptsOptimized": 4,
+      "promptsLeftUnchanged": 7,
+      "promptsDeclined": 1,
+      "tokensSaved": 99,
+      "tokensSavedUndone": 0
+    },
+    {
+      "date": "2026-09-30",
+      "optimizationRuns": 30,
+      "runsUnchanged": 7,
+      "promptsOptimized": 6,
+      "promptsLeftUnchanged": 3,
+      "promptsDeclined": 3,
+      "tokensSaved": 114,
+      "tokensSavedUndone": 22
+    }
+  ],
+  "transformations": {
+    "greeting": 30,
+    "duplicate-sentence": 32,
+    "pleasantry": 27,
+    "whitespace": 30,
+    "please-prefix": 30,
+    "want-preamble": 30,
+    "request-preamble": 24,
+    "verbose-phrase": 21
+  },
+  "containsPromptText": false,
+  "sampleData": true,
+  "note": "SYNTHETIC SAMPLE generated by extension/eval/generate_sample_stats.js. Not real usage."
+}

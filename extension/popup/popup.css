@@ -1,0 +1,9 @@
+body { width: 360px; }
+.popup { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.stack p { margin: 0; }
+.actions { display: flex; gap: 6px; }
+.actions .btn { flex: 1; }
+footer { padding: 0 2px; }
+label { cursor: pointer; }
+#m-message:empty { display: none; }
