@@ -162,18 +162,19 @@ test('popup: asks the one-time question, shows the paused-site notice, and Retry
   const popup = await ctx.browser.newPage();
   await popup.goto(`chrome-extension://${ctx.extensionId}/popup/popup.html?tab=${tabId}`);
   await popup.waitForFunction(() => document.getElementById('site-detail').textContent !== 'Checking…');
-  assert.equal(await popup.$eval('#consent-card', (e) => e.hidden), false);
+  assert.equal(await popup.evaluate(() => getComputedStyle(document.getElementById('consent-card')).display !== 'none'), true, 'consent card must be visible');
   await popup.click('#choose-auto');
-  await popup.waitForFunction(() => document.getElementById('consent-card').hidden);
+  await popup.waitForFunction(() => !(getComputedStyle(document.getElementById('blocked-row')).display !== 'none'));
+  await popup.waitForFunction(() => !(getComputedStyle(document.getElementById('consent-card')).display !== 'none'));
   let stored = (await h.getStorage(ctx)).settings;
   assert.deepEqual([stored.modeChosen, stored.applyMode], [true, 'autoApply']);
   assert.equal(await popup.$eval('#apply-mode', (e) => e.value), 'autoApply');
 
   await h.setSettings(ctx, { autoBlockedSites: ['local-test'] });
   await popup.reload();
-  await popup.waitForFunction(() => !document.getElementById('blocked-row').hidden);
+  await popup.waitForFunction(() => getComputedStyle(document.getElementById('blocked-row')).display !== 'none');
   await popup.click('#retry-auto');
-  await popup.waitForFunction(() => document.getElementById('blocked-row').hidden);
+  await popup.waitForFunction(() => !(getComputedStyle(document.getElementById('blocked-row')).display !== 'none'));
   stored = (await h.getStorage(ctx)).settings;
   assert.deepEqual(stored.autoBlockedSites, []);
   await popup.close();

@@ -1,6 +1,6 @@
 # AquaGuard Prompt Optimizer: privacy policy
 
-*Last updated: 2026-10-17 · applies to extension version 0.1.0*
+*Last updated: 2026-10-17 · applies to extension version 0.2.1 and later*
 
 ## Summary
 
@@ -17,7 +17,7 @@ All storage is `chrome.storage.local` on your device. It is not synced to the cl
 
 | Data | When | Contains prompt text? |
 |---|---|---|
-| Settings (on/off, mode, delay, disabled sites, impact assumptions) | Always | No |
+| Settings (on/off, your Automatic/Manual choice, delay, thresholds, disabled sites, sites where automatic mode is paused, impact assumptions) | Always | No |
 | Aggregate statistics (counts, estimated token numbers, rule names, dates) | **Only if you turn statistics on** | No |
 | Your original prompt, for Undo | In memory of the open tab only, discarded when the tab closes | n/a (never stored) |
 

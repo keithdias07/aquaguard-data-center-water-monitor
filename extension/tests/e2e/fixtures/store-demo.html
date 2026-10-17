@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Demo chat</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f4f6fb; color: #1e293b; display: flex; flex-direction: column; }
+    .caption { background: linear-gradient(135deg, #071425, #0b2a4a); color: #ecfeff; padding: 26px 48px 24px; display: flex; align-items: center; gap: 18px; }
+    .caption img { width: 52px; height: 52px; }
+    .caption h1 { margin: 0; font-size: 30px; line-height: 1.15; letter-spacing: -0.01em; }
+    .caption p { margin: 4px 0 0; font-size: 16px; color: #9fd8ef; }
+    .app { flex: 1; display: flex; min-height: 0; }
+    .side { width: 220px; background: #e9edf5; padding: 18px 14px; color: #64748b; font-size: 13px; }
+    .side b { display: block; color: #334155; margin-bottom: 10px; font-size: 14px; }
+    .side div { padding: 7px 10px; border-radius: 8px; margin-bottom: 4px; }
+    .side div.on { background: #dbe3ef; color: #1e293b; }
+    .main { flex: 1; display: flex; flex-direction: column; padding: 18px 60px 22px; min-width: 0; }
+    .thread { flex: 1; display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+    .msg { max-width: 70%; padding: 10px 14px; border-radius: 14px; font-size: 14px; }
+    .msg.user { align-self: flex-end; background: #dbeafe; }
+    .msg.bot { align-self: flex-start; background: #fff; border: 1px solid #e2e8f0; }
+    form { margin-top: 14px; display: flex; gap: 10px; align-items: flex-end; }
+    textarea { flex: 1; resize: none; font: inherit; font-size: 14.5px; padding: 14px 16px; border-radius: 16px; border: 1px solid #cbd5e1; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,.06); outline: none; }
+    button.send { width: 44px; height: 44px; border-radius: 50%; border: 0; background: #1e293b; color: #fff; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <header class="caption">
+    <img src="/icons/icon128.png" alt="">
+    <div><h1 id="cap-title">AquaGuard Prompt Optimizer</h1><p id="cap-sub"></p></div>
+  </header>
+  <div class="app">
+    <nav class="side"><b>Demo chat</b><div class="on">Learning plan</div><div>Trip ideas</div><div>Email draft</div></nav>
+    <main class="main">
+      <div class="thread">
+        <div class="msg user">Can you recommend a good first programming language?</div>
+        <div class="msg bot">Python is a popular first choice: readable syntax, a huge community, and it is widely used in data science and machine learning.</div>
+      </div>
+      <form id="chat" onsubmit="event.preventDefault(); window.__submits = (window.__submits || 0) + 1;">
+        <textarea id="field" data-aquaguard-field rows="9" aria-label="Message"></textarea>
+        <button class="send" type="submit" aria-label="Send">&#8593;</button>
+      </form>
+    </main>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    if (q.get('title')) document.getElementById('cap-title').textContent = q.get('title');
+    if (q.get('sub')) document.getElementById('cap-sub').textContent = q.get('sub');
+    if (q.get('rows')) document.getElementById('field').rows = Number(q.get('rows'));
+    window.__ready = true;
+  </script>
+</body>
+</html>

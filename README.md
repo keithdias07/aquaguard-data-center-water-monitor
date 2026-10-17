@@ -305,6 +305,8 @@ python scripts/package_extension.py --check
 
 This writes `dist/aquaguard-prompt-optimizer-<version>.zip` with only the runtime files (manifest, `src/`, `popup/`, `options/`, `ui/`, `icons/`), sorted with fixed timestamps so builds are byte-for-byte reproducible. It also verifies that every file the manifest references is included and that no test-only localhost match slipped in.
 
+**Everything for the Chrome Web Store submission is in [`store/`](store/)**: [`store/SUBMISSION.md`](store/SUBMISSION.md) has every dashboard field ready to paste (listing text, privacy answers, permission justifications, reviewer test steps, checklist), and `store/images/` has the 1280×800 screenshots and promo tiles (rebuild with `node ../store/build_store_assets.js` from `extension/`).
+
 Before a manual Web Store submission you will still need: a developer account, store screenshots (1280×800), a privacy-policy URL (you can host [docs/PRIVACY.md](docs/PRIVACY.md)), and the permission justifications from the table above. **The extension has not been submitted to or approved by the Chrome Web Store.**
 
 ## Screenshots

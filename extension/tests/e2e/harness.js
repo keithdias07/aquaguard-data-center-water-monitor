@@ -18,7 +18,7 @@ const EXT_ROOT = path.resolve(__dirname, '..', '..');
 const FIXTURES = path.join(__dirname, 'fixtures');
 const SHIP_DIRS = ['src', 'popup', 'options', 'icons', 'ui'];
 
-const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.map': 'application/json' };
+const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.map': 'application/json', '.png': 'image/png' };
 
 function findChrome() {
   const candidates = [
@@ -39,7 +39,7 @@ function startServer() {
   const server = http.createServer((req, res) => {
     const url = new URL(req.url, 'http://127.0.0.1');
     let file;
-    if (url.pathname.startsWith('/node_modules/')) file = path.join(EXT_ROOT, url.pathname);
+    if (url.pathname.startsWith('/node_modules/') || url.pathname.startsWith('/icons/')) file = path.join(EXT_ROOT, url.pathname);
     else file = path.join(FIXTURES, url.pathname === '/' ? 'chat.html' : url.pathname);
     const resolved = path.resolve(file);
     if (!resolved.startsWith(EXT_ROOT) || !fs.existsSync(resolved) || fs.statSync(resolved).isDirectory()) {

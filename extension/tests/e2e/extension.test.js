@@ -247,7 +247,7 @@ test('unsupported site: no content script, popup says so', async () => {
   const popup = await openPopupFor(page);
   const name = await popup.$eval('#site-name', (e) => e.textContent);
   assert.equal(name, 'Not a supported site');
-  assert.equal(await popup.$eval('#result-card', (e) => e.hidden), true);
+  assert.equal(await popup.evaluate(() => getComputedStyle(document.getElementById('result-card')).display !== 'none'), false, 'result card must not be visible on unsupported sites');
   await popup.close();
   await page.close();
 });
