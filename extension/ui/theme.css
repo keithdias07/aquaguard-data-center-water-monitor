@@ -19,6 +19,10 @@
 
 * { box-sizing: border-box; }
 
+/* Classes like .row and .card set `display`, which would otherwise override
+   the browser's built-in rule for the `hidden` attribute. */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background: var(--bg);

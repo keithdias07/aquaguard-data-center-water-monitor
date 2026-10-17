@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "AquaGuard Prompt Optimizer",
   "short_name": "AquaGuard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shortens verbose AI prompts locally before you send them. Automatic or manual, one-click Undo, never sends for you.",
   "minimum_chrome_version": "116",
   "permissions": ["storage"],
